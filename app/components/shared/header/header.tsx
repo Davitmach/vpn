@@ -1,0 +1,98 @@
+'use client';
+import './style.scss';
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+
+interface IState {
+    title: string;
+    description: string;
+    date?: string; // Опциональное поле, так как не во всех объектах оно есть
+}
+
+interface IStates {
+    dis: IState;
+    dis2: IState;
+    conn: IState;
+}
+
+const States: IStates = {
+    dis: {
+        title: "Отключен",
+        description: 'Нет подписки'
+    },
+    dis2: {
+        title: 'Отключен',
+        date: '9.06.2025',
+        description: 'Подписка закончилась',
+    },
+    conn: {
+        title: 'Подключен',
+        date: '9.06.2025',
+        description: 'Подписка закончилась',
+    }
+}
+
+export const Header = () => {
+    const {push} = useRouter();
+    const [active, setActive] = useState<keyof IStates>('conn');
+
+    return (
+        <>
+            <header className="w-full max-w-[350px] h-[100px] relative bg-[#56B2E5] flex items-center justify-between px-[20px] py-[10px] mx-auto rounded-b-[20px] rounded-tr-[20px] mt-[40px]">
+                <div className="flex flex-col gap-[10px] justify-between h-full">
+                    <div className="text-white font-[700] text-[18px] name">Prosto.vpn</div>
+                    <div className="text-white font-[400] text-[18px] description leading-[1]">{States[active].description}</div>
+                </div>
+                <div className="flex flex-col gap-[10px] h-full justify-between">
+                    <div className="text-white font-[700] text-[18px] title">{States[active].title}</div>
+                    {States[active].date && <div className="text-white font-[400] text-[18px] date">{States[active].date}</div>}
+                </div>
+                <div className="Back absolute bg-[#56B2E5] rounded-t-[20px] top-[-30px] p-[10px] left-[0]">
+                <svg onClick={()=> {
+                    push('/')
+                }} width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M2.22183 9.29287C1.8313 9.68339 1.8313 10.3166 2.22183 10.7071L8.58579 17.071C8.97631 17.4616 9.60948 17.4616 10 17.071C10.3905 16.6805 10.3905 16.0474 10 15.6568L4.34315 9.99998L10 4.34312C10.3905 3.9526 10.3905 3.31943 10 2.92891C9.60948 2.53838 8.97631 2.53838 8.58579 2.92891L2.22183 9.29287ZM17.0711 8.99998H2.92893L2.92893 11H17.0711L17.0711 8.99998Z" fill="black"/>
+</svg>
+
+                </div>
+                <div className="Menu absolute bg-[#56B2E5] rounded-t-[20px] top-[-30px] p-[10px] right-[30px]">
+                <svg width="45" height="22" viewBox="0 0 45 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="44" height="20" transform="translate(0 1.00366)" fill="#56B2E5"/>
+<circle cx="2" cy="3.00366" r="2" fill="black"/>
+<circle cx="2" cy="11.0037" r="2" fill="black"/>
+<circle cx="2" cy="19.0037" r="2" fill="black"/>
+<path d="M44 1.00366L24 21.0037" stroke="black" strokeWidth="2" strokeLinecap="round"/>
+<path d="M44 21.0037L24 1.00366" stroke="black" strokeWidth="2" strokeLinecap="round"/>
+</svg>
+
+
+                </div>
+            </header>
+        </>
+    );
+};
+
+export const SettingsHeader = () => {
+    const {push} = useRouter();
+    return (
+        <>
+            <header className="z-[99999999999999] absolute left-[50%] translate-x-[-50%] w-full max-w-[350px] h-[100px]  mt-[20px] flex justify-between mx-auto">
+           <div><svg  width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path onClick={()=> {
+            push('/')
+           }} className='cursor-pointer' d="M2.22183 9.29287C1.8313 9.68339 1.8313 10.3166 2.22183 10.7071L8.58579 17.071C8.97631 17.4616 9.60948 17.4616 10 17.071C10.3905 16.6805 10.3905 16.0474 10 15.6568L4.34315 9.99998L10 4.34312C10.3905 3.9526 10.3905 3.31943 10 2.92891C9.60948 2.53838 8.97631 2.53838 8.58579 2.92891L2.22183 9.29287ZM17.0711 8.99998H2.92893L2.92893 11H17.0711L17.0711 8.99998Z" fill="white"/>
+</svg>
+</div>
+           <div><svg width="45" height="22" viewBox="0 0 45 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="2" cy="3" r="2" fill="white"/>
+<circle cx="2" cy="11" r="2" fill="white"/>
+<circle cx="2" cy="19" r="2" fill="white"/>
+<path d="M44 1L24 21" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+<path className='cursor-pointer' d="M44 21L24 0.999999" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+</svg>
+</div>
+              
+            </header>
+        </>
+    );
+};

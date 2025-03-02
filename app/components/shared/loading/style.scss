@@ -1,0 +1,32 @@
+.first_cloud {
+    animation: cloudMovementFirst 6s ease-in-out infinite;
+  }
+  
+  .second_cloud {
+    animation: cloudMovementSecond 8s ease-in-out infinite;
+  }
+  
+  @keyframes cloudMovementFirst {
+    0% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(20px); /* Двигаем облако немного вправо */
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes cloudMovementSecond {
+    0% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(-20px); /* Двигаем облако немного влево */
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  

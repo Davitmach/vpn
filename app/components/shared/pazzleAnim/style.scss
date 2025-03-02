@@ -1,0 +1,75 @@
+// .First_pazzle {
+// animation: anim1 2s ease-in-out infinite alternate ;
+
+//     @keyframes anim1 {
+//     0% {
+//         transform: translateY(0);
+//     }
+//   20% {
+//     transform:rotate(15deg) translateY(40px);
+   
+//   }
+//   30% {
+//    fill:red
+//   }
+//     }
+//     .AnimBg {
+//         animation: animBg1 3s ease-in-out alternate-reverse infinite;
+//         @keyframes animBg1 {
+//             0% {
+//                fill: white;
+//             }
+//         20% {
+//             fill: #C4FF35;
+//         }
+//         50% {
+//             fill: #C4FF35;
+//         }
+//         100% {
+//             fill: white;
+//         }
+//             } 
+//     }
+// }
+
+.AnimBg {
+    transform: translateX(0) translateY(0) !important;
+}
+.AnimBg2 {
+    transform: translateX(0) translateY(0) !important;
+}
+.AnimBg3 {
+    transform: translateX(0) translateY(0) !important;
+}
+.Galochka {
+    transform: translateY(-80px);
+    z-index: 99999;
+    background-color: transparent !important;
+}
+.Cloud {
+    transform: translateY(0) !important;
+}
+.Gray {
+    transform: translateX(0) rotate(0) translateY(34px) !important;
+    background-color: transparent !important;
+}
+.Full_green {
+    transform: translateY(-90px) translateX(0) rotate(0) !important;
+    background-color: transparent !important;
+}
+.Gradient_green {
+    transform: translateY(-28px) translateX(0) rotate(0) !important;
+    background-color: transparent !important;
+}
+.Btn {
+    transform: translateY(-95px) translateX(0px) rotate(0) !important;
+    opacity: 1 !important;
+}
+.White_block {
+    transform: translateY(40px);
+    z-index:    999999;
+}
+.Purple_block {
+    opacity: 1 !important;
+    background-color: transparent !important;
+}
