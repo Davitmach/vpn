@@ -12,7 +12,7 @@
 
     return (
   <>
-  <Loading/>
+
   <Header/>
   <Tarif/>
   <Connect/>
