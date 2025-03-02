@@ -6,7 +6,7 @@ export const Connect = ()=> {
     const {push} = useRouter();
     return(
         <>
-        <svg className="w-full mx-auto max-w-[350px] h-[0%]" width="350" height="155" viewBox="0 0 350 155" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg className="w-full mx-auto max-w-[350px] h-[auto]" width="350" height="155" viewBox="0 0 350 155" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path onClick={()=> {
     push('/tarif')
 }} d="M75 84.5H160C162.761 84.5 165 82.2614 165 79.5V78.5V75.5C165 72.7386 167.239 70.5 170 70.5H174.5H179H188C190.761 70.5 193 72.7386 193 75.5V78.5V79.5C193 82.2614 195.239 84.5 198 84.5H275V123C275 124.381 273.881 125.5 272.5 125.5C268.358 125.5 265 128.858 265 133V142C265 146.142 268.358 149.5 272.5 149.5C273.881 149.5 275 150.619 275 152V154.5H175.5H75V124.5C75 122.843 76.3431 121.5 78 121.5C82.9706 121.5 87 117.471 87 112.5V106.5C87 101.529 82.9706 97.5 78 97.5C76.3431 97.5 75 96.1569 75 94.5V84.5Z" fill="#C4FF35"/>
