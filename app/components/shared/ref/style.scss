@@ -1,0 +1,15 @@
+.Ref_btns {
+    &>svg {
+        &:hover {
+            &>path:nth-child(4) {
+                fill: white;
+            }
+            &>path:nth-child(5) {
+                fill: white
+            }
+            &>path:nth-child(3) {
+                fill: black
+            }
+        }
+    }
+}

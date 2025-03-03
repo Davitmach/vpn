@@ -1,7 +1,7 @@
 'use client';
 import './style.scss';
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 interface IState {
     title: string;
@@ -33,8 +33,9 @@ const States: IStates = {
 }
 
 export const Header = () => {
-    const {push} = useRouter();
+    const {push,back} = useRouter();
     const [active, setActive] = useState<keyof IStates>('conn');
+const path = usePathname();
 
     return (
         <>
@@ -49,7 +50,7 @@ export const Header = () => {
                 </div>
                 <div className="Back absolute bg-[#56B2E5] rounded-t-[20px] top-[-30px] p-[10px] left-[0]">
                 <svg onClick={()=> {
-                    push('/')
+                   if(path == '/') { push('/')}else {back()}
                 }} width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M2.22183 9.29287C1.8313 9.68339 1.8313 10.3166 2.22183 10.7071L8.58579 17.071C8.97631 17.4616 9.60948 17.4616 10 17.071C10.3905 16.6805 10.3905 16.0474 10 15.6568L4.34315 9.99998L10 4.34312C10.3905 3.9526 10.3905 3.31943 10 2.92891C9.60948 2.53838 8.97631 2.53838 8.58579 2.92891L2.22183 9.29287ZM17.0711 8.99998H2.92893L2.92893 11H17.0711L17.0711 8.99998Z" fill="black"/>
 </svg>
