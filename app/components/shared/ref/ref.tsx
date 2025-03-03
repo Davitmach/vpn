@@ -1,5 +1,8 @@
+'use client';
+import { useRouter } from 'next/navigation';
 import './style.scss';
 export const Ref = ()=> {
+    const {push} = useRouter();
     return(
         <div className="bg-[#BBF6E2] p-[20px] rounded-[20px] max-w-[350px] mx-auto w-full ">
 <div className="flex w-full items-center justify-between">
@@ -7,7 +10,9 @@ export const Ref = ()=> {
     <div className="font-[400] text-[18px]">id2332094825</div>
 </div>
 <div className="flex flex-col gap-[10px] mt-[20px] Ref_btns">
-<svg className="w-full cursor-pointer" height="30" viewBox="0 0 310 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg onClick={()=> {
+    push('/referal')
+}} className="w-full cursor-pointer" height="30" viewBox="0 0 310 30" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M0 10C0 4.47715 4.47715 0 10 0H30V30H10C4.47715 30 0 25.5228 0 20V10Z" fill="black"/>
 <path d="M15.7487 6.992C17.1407 6.992 18.6767 7.184 19.9487 8.312C21.3167 9.536 21.5087 11.072 21.5087 12.2C21.5087 13.256 21.3647 14.696 20.1407 15.776C19.5887 16.28 18.3647 17.048 16.0607 17.048H13.8047V18.56H18.1247V20.888H13.8047V23H10.1087V20.888H8.38069V18.56H10.1087V17.048H8.38069V14.36H10.1087V6.992H15.7487ZM13.8047 10.016V14.36H15.1247C15.6287 14.36 16.5167 14.336 17.1167 13.76C17.4527 13.424 17.7167 12.872 17.7167 12.176C17.7167 11.504 17.4767 10.952 17.1167 10.616C16.5647 10.088 15.7727 10.016 15.0527 10.016H13.8047Z" fill="white"/>
 <path d="M30 0H300C305.523 0 310 4.47715 310 10V20C310 25.5228 305.523 30 300 30H30V0Z" fill="white"/>
