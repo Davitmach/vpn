@@ -18,7 +18,7 @@ export const Podpiska = ()=> {
   setActive('1')
 }} fill={ active == '1' ? '#56B2E5' :'white'}/>
 <text fill="black" x="55" fontSize="18" y="50">1 месяц</text>
-<text fill="black" x="50" fontSize="28" y="90" fontWeight="500">{199 *count} ₽</text>
+<text fill="black" x="50" fontSize="28" y="90" fontWeight="500">{count == 1 ? 199 : count == 2 ? 249 : count == 3 ? 298 : 348} ₽</text>
 <path className="Tarif" d="M0 225C0 236.046 8.95431 245 20 245H168V228.769C168 227.24 166.76 226 165.231 226C160.133 226 156 221.867 156 216.769V211.231C156 206.133 160.133 202 165.231 202C166.76 202 168 200.76 168 199.231L168 125H48.7692C47.2398 125 46 126.24 46 127.769C46 132.867 41.8672 137 36.7692 137H31.2308C26.1328 137 22 132.867 22 127.769C22 126.24 20.7602 125 19.2308 125H0V225Z" onClick={()=>{ 
   setActive('2')
 }} fill={ active == '2' ? '#56B2E5' :'white'} />
@@ -29,15 +29,15 @@ export const Podpiska = ()=> {
   setActive('3')
 }} fill={ active == '3' ? '#56B2E5' :'white'}/>
 <text fill="black" x="229" fontSize="18" y="50">3 месяц</text>
-<text fill="black" x="225" fontSize="28" y="89" fontWeight="500">{549 * count} ₽</text>
+<text fill="black" x="225" fontSize="28" y="89" fontWeight="500">{ count == 1 ?549 :count ==2 ?686 : count ==3 ?823 :960} ₽</text>
 
 <path className="Tarif" d="M173 245H330C341.046 245 350 236.046 350 225V125H305C302.239 125 300 122.761 300 120V118C300 115.239 297.761 113 295 113H292C289.239 113 287 115.239 287 118V120C287 122.761 284.761 125 282 125H173V201C173 204.314 170.314 207 167 207C163.686 207 161 209.686 161 213V215C161 218.314 163.686 221 167 221C170.314 221 173 223.686 173 227V245Z" onClick={()=>{ 
   setActive('4')
 }} fill={ active == '4' ? '#56B2E5' :'white'}/>
 <text fill="black" x="45" fontSize="18" y="175">6 месяцев</text>
-<text fill="black" x="48" fontSize="28" y="213" fontWeight="500">{999 * count} ₽</text>
+<text fill="black" x="48" fontSize="28" y="213" fontWeight="500">{count == 1 ?999 : count ==2 ?1249 : count == 3 ? 1498 : 1747} ₽</text>
 <text fill="black" x="243" fontSize="18" y="174">1 год</text>
-<text fill="black" x="220" fontSize="28" y="213" fontWeight="500">{1790 * count} ₽</text>
+<text fill="black" x="220" fontSize="28" y="213" fontWeight="500">{count ==1 ? 1790 : count == 2 ?2237 : count == 3 ? 2683 : 3130} ₽</text>
 
 
 </svg>
@@ -54,7 +54,7 @@ export const Podpiska = ()=> {
   <div className={`flex flex-col gap-[5px] ${countActive == true? "" :'hidden'} absolute bg-white w-[51px] rounded-[20px] rounded-t-[0] p-[7px]`}>
     {Array.from({length:4},(_,index)=> (
       <div onClick={()=> {
-        console.log(index+1);
+   
         setCount(index+1)
         setCountActive(false)
         

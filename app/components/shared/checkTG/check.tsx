@@ -5,7 +5,7 @@ export const Check = ()=> {
     if (window.Telegram && window.Telegram.WebApp) {
       // Пример использования Telegram WebApp API
       window.Telegram.WebApp.ready();
-      console.log('WebApp is running inside Telegram!');
+
 
       // Например, изменим текст на кнопке
       window.Telegram.WebApp.MainButton.setText('Hello from WebApp!');
