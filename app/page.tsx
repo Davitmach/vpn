@@ -6,7 +6,7 @@
   import { Support } from "./components/shared/support/support";
   import { Tarif } from "./components/shared/tarif/tarif";
   import { Loading } from "./components/shared/loading/loading";
-
+import { Full } from "./components/shared/fullScreen/full";
 
   export default function Home() {
 
@@ -18,6 +18,7 @@
   <Connect/>
   <Info/>
   <Support/>
+  <Full/>
   </>
     );
   }

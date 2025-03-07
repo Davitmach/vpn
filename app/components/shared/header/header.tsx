@@ -39,16 +39,16 @@ const path = usePathname();
 
     return (
         <>
-            <header className="w-full max-w-[350px] h-[100px] relative bg-[#56B2E5] flex items-center justify-between px-[20px] py-[10px] mx-auto rounded-b-[20px] rounded-tr-[20px] mt-[40px]">
-                <div className="flex flex-col gap-[10px] justify-between h-full">
+            <header className="w-full max-w-[350px] h-[80px] relative bg-[#56B2E5] flex items-center justify-between px-[20px] py-[10px] mx-auto rounded-b-[20px] rounded-tr-[20px] mt-[50px]">
+                <div className="flex flex-col  justify-between h-full">
                     <div className="text-white font-[700] text-[18px] name">Prosto.vpn</div>
                     <div className="text-white font-[400] text-[18px] description leading-[1]">{States[active].description}</div>
                 </div>
-                <div className="flex flex-col gap-[10px] h-full justify-between">
+                <div className="flex flex-col h-full justify-between">
                     <div className="text-white font-[700] text-[18px] title">{States[active].title}</div>
                     {States[active].date && <div className="text-white font-[400] text-[18px] date">{States[active].date}</div>}
                 </div>
-                <div className="Back absolute bg-[#56B2E5] rounded-t-[20px] top-[-30px] p-[10px] left-[0]">
+                <div className="Back absolute bg-[#56B2E5] rounded-t-[20px] top-[-25px] p-[10px] left-[0]">
                 <svg onClick={()=> {
                    if(path == '/') { push('/')}else {back()}
                 }} width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -56,7 +56,7 @@ const path = usePathname();
 </svg>
 
                 </div>
-                <div className="Menu absolute bg-[#56B2E5] rounded-t-[20px] top-[-30px] p-[10px] right-[30px]">
+                <div className="Menu absolute bg-[#56B2E5] rounded-t-[20px] top-[-25px] p-[10px] right-[30px]">
                 <svg width="45" height="22" viewBox="0 0 45 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 <rect width="44" height="20" transform="translate(0 1.00366)" fill="#56B2E5"/>
 <circle cx="2" cy="3.00366" r="2" fill="black"/>

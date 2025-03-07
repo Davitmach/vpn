@@ -19,3 +19,21 @@
         font-size: 14px;
     }
 }
+.Menu {
+    @media (max-width:355px) {
+        top: -30px;
+        svg {
+        width:25px;
+        height: 20px;
+        }
+    }
+}
+.Back {
+    @media (max-width:355px) {
+        top: -30px;
+     svg {
+        width: 17px;
+        height: 17px;
+     }
+    } 
+}

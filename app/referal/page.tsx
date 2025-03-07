@@ -1,3 +1,4 @@
+import { Full } from "../components/shared/fullScreen/full";
 import { Header } from "../components/shared/header/header";
 import { LinkRef } from "../components/shared/link/link";
 import { Program } from "../components/shared/program/program";
@@ -12,6 +13,7 @@ export default function Referal() {
         <About/>
         <Deposit/>
         <Top/>
+       <Full/>
         </>
     )
 }
