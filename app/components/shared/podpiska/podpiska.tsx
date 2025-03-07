@@ -72,7 +72,7 @@ export const Podpiska = ()=> {
   </div>
   </div>
 </div>
-<Infoblock type='eco'/>
+<Infoblock type={active !=='probni' ? 'eco': 'trial'}/>
 <div className="Pay mt-[13px] flex flex-col gap-[10px]">
   <div className="font-[400] text-[18px] text-white">Итого</div>
   <div className="w-full flex justify-between">
