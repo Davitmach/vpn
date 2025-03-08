@@ -62,11 +62,8 @@ export const Podpiska = ()=> {
   <div className={`flex flex-col gap-[5px] ${countActive == true? "" :'hidden'} absolute bg-white w-[51px] rounded-[20px] rounded-t-[0] p-[7px]`}>
     {Array.from({length:4},(_,index)=> (
       <div onClick={()=> {
-   
         setCount(index+1)
         setCountActive(false)
-        
-        // setCountActive(false)
       }} className="text-center" key={index}>{index+1}</div>
     ))}
   </div>

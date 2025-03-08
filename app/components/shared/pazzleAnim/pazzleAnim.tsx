@@ -141,7 +141,7 @@ export const PazzleAnim = ()=> {
                 translateY: 40,
                 rotate: 15,
                 fill: "#C4FF35", // Replace "newColor" with your desired color (e.g., "red")
-                translateX:-2
+                translateX:-1
               })
               
             
