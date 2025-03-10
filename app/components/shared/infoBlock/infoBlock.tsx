@@ -1,5 +1,7 @@
 interface IInfoBlock {
-type:'eco'|'trial'
+type:'eco'|'trial',
+year?:boolean,
+tarif?:number
 }
 export const Infoblock = (props:IInfoBlock)=> {
 if(props.type == 'eco') {
@@ -9,12 +11,13 @@ if(props.type == 'eco') {
             <div className="w-full flex flex-col gap-[10px] mt-[10px]">
                 <div className="w-full flex justify-between">
                     <div className="font-[400] text-white text-[18px]">выбранный тариф</div>
-                    <div className="font-[400] text-white text-[18px]">0%</div>
+                    <div className="font-[400] text-white text-[18px]">{props.tarif}%</div>
                 </div>
-                <div className="w-full flex justify-between">
+                {props.year == true &&   <div className="w-full flex justify-between">
                     <div className="font-[400] text-white text-[18px]">с подпиской на 1 год</div>
                     <div className="font-[400] text-white text-[18px]">25%</div>
-                </div>
+                </div> } 
+             
             </div>
         </div>
     )
