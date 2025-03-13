@@ -1,5 +1,5 @@
 import { Header } from "../components/shared/header/header";
-import { Link } from "../components/shared/link/link";
+import { Link, LinkRef } from "../components/shared/link/link";
 import { Ref } from "../components/shared/ref/ref";
 import { Tranzakcia } from "../components/shared/tranzakcia/tranzikcia";
 
@@ -8,7 +8,8 @@ export default function User()  {
         <>
         <Header/>
         <Ref/>
-        <Link/>
+        {/* <Link/> */}
+        <LinkRef/>
         <Tranzakcia/>
         </>
     )
