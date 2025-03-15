@@ -122,7 +122,30 @@ export const PazzleAnim = ()=> {
       // Используем закодированный URL
       window.location.href = encodedUrl;
     };
-    
+    function redirectToV2RayTun() {
+     
+      const checklog = localStorage.getItem('loaded');
+      if(checklog !== 'true') { 
+      const userAgent = navigator.userAgent.toLowerCase();
+      
+      
+      if (/iphone|ipad|ipod/.test(userAgent)) {
+          window.location.href = "https://apps.apple.com/us/app/v2raytun/id6476628951";
+      } else if (/android/.test(userAgent)) {
+          window.location.href = "https://apkpure.com/v2raytun/com.v2raytun.android";
+      } else if (/win/.test(userAgent)) {
+          window.location.href = "https://github.com/2dust/v2rayN";
+      } else if (/mac/.test(userAgent)) {
+          window.location.href = "https://github.com/2dust/v2rayN";
+      } else {
+          alert("Ваша платформа не поддерживается!");
+      }
+    }
+    localStorage.setItem('loaded','true');
+  }
+  
+
+  
     useEffect(() => { 
 
         
@@ -291,6 +314,7 @@ export const PazzleAnim = ()=> {
                     push('/')
                 }
                 else if(active ==2) {
+                 
                     setActive(1)
                     setFirst(false)
                 }
@@ -305,6 +329,8 @@ export const PazzleAnim = ()=> {
                     setFirst(false)
                 }
                 else if(active == 2) {
+                  redirectToV2RayTun()
+                  
                     setActive(3)
                     setFirst(false)
                 }
@@ -312,7 +338,7 @@ export const PazzleAnim = ()=> {
                   Connect()
                   
                 }
-            }} className='hover:bg-[#000000] hover:text-[#C4FF35] active:bg-[#000000] active:text-[#C4FF35] leading-[1] text-nowrap bg-[#C4FF35] font-[500] text-[18px] w-full rounded-[20px] py-[14px] px-[8%] cursor-pointer flex-[2 2 auto] '>{active == 1 ?  'Начать настройку' : active == 2 ? 'Установить' :'Добавить'}</button>
+            }} className='hover:bg-[#000000] hover:text-[#C4FF35] active:bg-[#000000] active:text-[#C4FF35] leading-[1] text-nowrap bg-[#C4FF35] font-[500] text-[18px] w-full rounded-[20px] py-[14px] px-[8%] cursor-pointer flex-[2 2 auto] '>{active == 1 ?  'Начать настройку' : active == 2 ? localStorage.getItem('loaded') == 'true' ?'Далее' : 'Установить' :'Добавить'}</button>
         </div>
     </div>
     </div>
