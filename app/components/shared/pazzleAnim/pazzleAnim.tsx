@@ -3,6 +3,7 @@ import {  useEffect, useState } from 'react';
 import './style.scss'
 import anime from "animejs";
 import { useRouter } from 'next/navigation';
+import { Connect } from '../connect/connect';
 const Data = {
     pazzle1:{
         title:'НАСТРОЙКА НА MACOS',
@@ -136,6 +137,16 @@ export const PazzleAnim = ()=> {
           anime.set('.Full_green',{opacity:0})
           anime.set('.Gradient_green',{opacity:0})
         
+  const Connect = () => {
+    const url = "v2raytun://import/https://prostosetup.su:20196/servers/dz92xhbhuldylo9h";
+    const encodedUrl = "v2raytun://import/" + encodeURIComponent("https://prostosetup.su:20196/servers/dz92xhbhuldylo9h");
+    
+    // Используем закодированный URL
+    window.location.href = encodedUrl;
+  };
+  
+  
+  
         const startAnimation = () => {
           
             tl.add({
@@ -295,6 +306,10 @@ export const PazzleAnim = ()=> {
                 else if(active == 2) {
                     setActive(3)
                     setFirst(false)
+                }
+                else {
+                  Connect()
+                  
                 }
             }} className='hover:bg-[#000000] hover:text-[#C4FF35] active:bg-[#000000] active:text-[#C4FF35] leading-[1] text-nowrap bg-[#C4FF35] font-[500] text-[18px] w-full rounded-[20px] py-[14px] px-[8%] cursor-pointer flex-[2 2 auto] '>{active == 1 ?  'Начать настройку' : active == 2 ? 'Установить' :'Добавить'}</button>
         </div>
