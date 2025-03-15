@@ -115,6 +115,14 @@ export const PazzleAnim = ()=> {
     const [active,setActive] = useState<number>(1);
     const [first,setFirst] = useState<boolean>(true);
     const {push} = useRouter();
+    const Connect = () => {
+      const url = "v2raytun://import/https://prostosetup.su:20196/servers/dz92xhbhuldylo9h";
+      const encodedUrl = "v2raytun://import/" + encodeURIComponent("https://prostosetup.su:20196/servers/dz92xhbhuldylo9h");
+      
+      // Используем закодированный URL
+      window.location.href = encodedUrl;
+    };
+    
     useEffect(() => { 
 
         
@@ -137,14 +145,7 @@ export const PazzleAnim = ()=> {
           anime.set('.Full_green',{opacity:0})
           anime.set('.Gradient_green',{opacity:0})
         
-  const Connect = () => {
-    const url = "v2raytun://import/https://prostosetup.su:20196/servers/dz92xhbhuldylo9h";
-    const encodedUrl = "v2raytun://import/" + encodeURIComponent("https://prostosetup.su:20196/servers/dz92xhbhuldylo9h");
-    
-    // Используем закодированный URL
-    window.location.href = encodedUrl;
-  };
-  
+
   
   
         const startAnimation = () => {
