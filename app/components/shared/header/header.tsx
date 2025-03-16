@@ -48,7 +48,7 @@ const path = usePathname();
                     <div className="text-white font-[700] text-[18px] title">{States[active].title}</div>
                     {States[active].date && <div className="text-white font-[400] text-[18px] date">{States[active].date}</div>}
                 </div>
-                <div className="Back absolute bg-[#56B2E5] rounded-t-[20px] top-[-25px] p-[10px] left-[0]">
+                <div className="Back absolute bg-[#56B2E5] rounded-t-[20px] top-[-25px] p-[10px] left-[0] cursor-pointer">
                 <svg onClick={()=> {
                    if(path == '/') { push('/')}else {back()}
                 }} width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

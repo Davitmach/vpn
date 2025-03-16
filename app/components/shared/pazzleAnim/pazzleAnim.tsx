@@ -132,7 +132,7 @@ export const PazzleAnim = ()=> {
       if (/iphone|ipad|ipod/.test(userAgent)) {
           window.location.href = "https://apps.apple.com/us/app/v2raytun/id6476628951";
       } else if (/android/.test(userAgent)) {
-          window.location.href = "https://apkpure.com/v2raytun/com.v2raytun.android";
+          window.location.href = "https://play.google.com/store/apps/details?id=com.v2raytun.android";
       } else if (/win/.test(userAgent)) {
           window.location.href = "https://github.com/2dust/v2rayN";
       } else if (/mac/.test(userAgent)) {
