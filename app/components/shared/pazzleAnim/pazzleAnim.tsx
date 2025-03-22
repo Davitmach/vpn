@@ -147,22 +147,22 @@ setTimeout(() =>{
           window.location.href = "https://apps.apple.com/us/app/v2raytun/id6476628951";
       } 
       else if (/android/.test(userAgent)) {
-        const marketUrl = "market://details?id=com.v2raytun.android";
-        const playStoreUrl = "https://play.google.com/store/apps/details?id=com.v2raytun.android";
-    
+        const marketUrl = "market://details?id=com.v2raytun.android"; // Ссылка на Google Play через market://
+        const playStoreUrl = "https://play.google.com/store/apps/details?id=com.v2raytun.android"; // Ссылка на Google Play через браузер
+  
         let isRedirected = false;
-    
-        // Attempt the market redirect
+  
+        // Попытка редиректа через market://
         window.location.href = marketUrl;
-    
-        // Check if the redirection worked, if not, open the Play Store URL
+  
+        // Если редирект не сработал, открываем страницу в Play Store
         setTimeout(() => {
-            if (!isRedirected) {
-                window.location.href = playStoreUrl;
-                isRedirected = true; // Fix if the redirection worked
-            }
-        }, 1500); // Increase the timeout for better reliability
-    }
+          if (!isRedirected) {
+            window.location.href = playStoreUrl;
+            isRedirected = true; // Устанавливаем флаг, чтобы не выполнять его дважды
+          }
+        }, 1500); // Увеличенный таймаут для большей надежности
+      }
        else if (/win/.test(userAgent)) {
           window.location.href = "https://github.com/2dust/v2rayN";
       } else if (/mac/.test(userAgent)) {
