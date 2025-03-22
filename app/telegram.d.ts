@@ -1,15 +1,7 @@
-// telegram.d.ts
 declare global {
   interface Window {
-    Telegram?: {
-      WebApp: {
-        ready: () => void;
-        MainButton: {
-          setText: (text: string) => void;
-        };
-      };
-    };
+    Telegram: any; // Allow any type for window.Telegram
   }
 }
 
-export {}; // Для корректного определения глобального пространства имен
+export {};
