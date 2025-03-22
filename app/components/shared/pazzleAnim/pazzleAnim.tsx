@@ -140,8 +140,8 @@ export const PazzleAnim = ()=> {
     });
   
     // Возвращаем ответ в формате JSON
-    return response.json();
-    
+    const data =await response.json();
+    setDeeplink(data.deeplink)
   }
     function redirectToV2RayTun() {
      
@@ -153,7 +153,7 @@ export const PazzleAnim = ()=> {
       if (/iphone|ipad|ipod/.test(userAgent)) {
           window.location.href = "https://apps.apple.com/us/app/v2raytun/id6476628951";
       } else if (/android/.test(userAgent)) {
-          window.location.href = "https://play.google.com/store/apps/details?id=com.v2raytun.android";
+        window.location.href = "market://details?id=com.v2raytun.android";
       } else if (/win/.test(userAgent)) {
           window.location.href = "https://github.com/2dust/v2rayN";
       } else if (/mac/.test(userAgent)) {
