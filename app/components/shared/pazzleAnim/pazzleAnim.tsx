@@ -118,16 +118,13 @@ export const PazzleAnim = ()=> {
     const {push} = useRouter();
    
   
-  const Connect = async () => {
-  
-setTimeout(() =>{
- 
-
-  window.location.href = "v2raytun://import/https://prostosetup.su:20196/servers/a298bb1239d04498";
-}, 1000);
+    const Connect = async () => {
+      setTimeout(() => {
+        // Попробовать открыть в браузере, который поддерживает deeplink
+        window.location.href = "https://prostosetup.su:20196/servers/a298bb1239d04498"; 
+      }, 1000);
+    };
     
-  
-  };
   async function installVpn() {
     const response = await fetch("https://prostovpn.su/api/vpn/install", {
       method: "POST",
