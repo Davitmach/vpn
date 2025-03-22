@@ -122,7 +122,7 @@ export const Tranzakcia = () => {
    
     setTimeout(() => {
       getTransactions();
-    }, 500);
+    }, 1000);
     
   }, []);
   return (
