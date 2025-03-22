@@ -22,7 +22,7 @@ const States: IStates = {
 
     conn: {
         title: 'Подключен',
-description:'Подписка закончилась'
+description:'Подписка активна'
     }
 }
 
