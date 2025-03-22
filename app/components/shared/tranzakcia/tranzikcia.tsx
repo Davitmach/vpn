@@ -20,9 +20,9 @@ export const Block = (props: IBlock) => {
   const [isCopied, setIsCopied] = useState(false);
 
   const copyToClipboard = () => {
-    navigator.clipboard.writeText("Текст для копирования");
-    setIsCopied(true);
-    setTimeout(() => setIsCopied(false), 500); // Вернем размер через 0.5 сек
+    if (props.check) {
+      window.location.href = props.check; 
+    }
   };
 
   return (
@@ -116,7 +116,7 @@ export const Tranzakcia = () => {
     const data = await response.json();
     console.log(data,'транзакций');
     
-    setTransactions(data); // Устанавливаем массив транзакций
+    setTransactions(data);
   }
   useEffect(() => {
    
@@ -129,7 +129,7 @@ export const Tranzakcia = () => {
     <div className="bg-white rounded-[20px] p-[20px] max-w-[350px] w-full mx-auto">
       <div className="flex w-full items-center justify-between">
         <div className="font-[700] text-[18px]">История транзакций</div>
-        {/* {JSON.stringify(transactions)} */}
+        
         <div>
           <svg
             style={{

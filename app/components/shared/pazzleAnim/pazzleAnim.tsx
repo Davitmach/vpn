@@ -146,7 +146,7 @@ export const PazzleAnim = ()=> {
     function redirectToV2RayTun() {
      
       const checklog = localStorage.getItem('loaded');
-      if(checklog !== 'true') { 
+      // if(checklog !== 'true') { 
       const userAgent = navigator.userAgent.toLowerCase();
       
       
@@ -161,8 +161,8 @@ export const PazzleAnim = ()=> {
       } else {
           alert("Ваша платформа не поддерживается!");
       }
-    }
-    localStorage.setItem('loaded','true');
+    // }
+    // localStorage.setItem('loaded','true');
   }
   
 useEffect(()=> {
