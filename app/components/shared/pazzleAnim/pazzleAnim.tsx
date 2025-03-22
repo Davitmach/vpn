@@ -145,8 +145,8 @@ export const PazzleAnim = ()=> {
   }
     function redirectToV2RayTun() {
      
-      const checklog = localStorage.getItem('loaded');
-      // if(checklog !== 'true') { 
+      const checklog = localStorage.getItem('inst');
+      if(checklog !== 'true') { 
       const userAgent = navigator.userAgent.toLowerCase();
       
       
@@ -161,15 +161,15 @@ export const PazzleAnim = ()=> {
       } else {
           alert("Ваша платформа не поддерживается!");
       }
-    // }
-    // localStorage.setItem('loaded','true');
+    }
+    localStorage.setItem('inst','true');
   }
   
 useEffect(()=> {
-  setTimeout(() => {
-    installVpn();    
-  }, 1000);
 
+  window.Telegram.WebApp.onEvent("themeChanged", () => {
+    installVpn();    
+  });
 },[])
   
     useEffect(() => { 

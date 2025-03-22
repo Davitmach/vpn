@@ -17,7 +17,7 @@ export const Check = ()=> {
       // Альтернативно, можно отправить пользователя в веб-версию
       setTimeout(() => {
         window.location.href = 'https://t.me/your_bot_username'; // Веб-ссылка на бота
-      }, 1000);
+      }, 500);
     }
   }, []);
     return(

@@ -76,10 +76,10 @@ async function getSubscriptionEndDate() {
 
 
 useEffect(() => {
-setTimeout(() => {
-    getSubscriptionEndDate();
-}, 1000);
-       
+
+window.Telegram.WebApp.onEvent("themeChanged", () => {
+    getSubscriptionEndDate();   
+  });
     
 }, []);
 
