@@ -127,7 +127,7 @@ export const Tranzakcia = () => {
     <div className="bg-white rounded-[20px] p-[20px] max-w-[350px] w-full mx-auto">
       <div className="flex w-full items-center justify-between">
         <div className="font-[700] text-[18px]">История транзакций</div>
-        {JSON.stringify(transactions)}
+        {/* {JSON.stringify(transactions)} */}
         <div>
           <svg
             style={{
@@ -157,8 +157,8 @@ export const Tranzakcia = () => {
           acitve == true ? "h-[200px]" : "h-[0]"
         }`}
       >
-        {JSON.stringify(transactions)}
-        {/* {transactions.length > 0 && (
+        {/* {JSON.stringify(transactions)} */}
+        {transactions  && (
           transactions.map((transaction, index) => (
             <Block
               key={index}
@@ -168,7 +168,7 @@ export const Tranzakcia = () => {
       totalTime={transaction.period}
             />
           ))
-        ) } */}
+        ) }
        
       </div>
     </div>
