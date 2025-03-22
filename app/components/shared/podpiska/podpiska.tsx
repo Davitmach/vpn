@@ -47,7 +47,7 @@ async function getSubscriptionEndDate() {
 useEffect(()=> {
 setTimeout(() => {
   getSubscriptionEndDate();
-}, 500);
+}, 1000);
 },[])
 
 const HandleSubmit = async () => {

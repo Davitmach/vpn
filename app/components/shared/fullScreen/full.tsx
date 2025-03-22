@@ -11,7 +11,7 @@ export const Full = () => {
             if (window.Telegram.WebApp) {
                 window.Telegram.WebApp.expand();
             }      
-        }, 500);
+        }, 1000);
       
     }, []);
 
