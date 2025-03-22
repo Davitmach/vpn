@@ -115,13 +115,34 @@ export const PazzleAnim = ()=> {
     const [active,setActive] = useState<number>(1);
     const [first,setFirst] = useState<boolean>(true);
     const {push} = useRouter();
-    const Connect = () => {
-      const url = "v2raytun://import/https://prostosetup.su:20196/servers/dz92xhbhuldylo9h";
-      const encodedUrl = "v2raytun://import/" + encodeURIComponent("https://prostosetup.su:20196/servers/dz92xhbhuldylo9h");
-      
-      // Используем закодированный URL
-      window.location.href = encodedUrl;
-    };
+   
+  
+  const Connect = async () => {
+    // Получаем URL для подключения к VPN из API
+    const response = await installVpn();
+  
+    // Извлекаем deeplink из ответа
+    const deeplink = response.deeplink;
+  
+    // Переход по URL
+    if (deeplink) {
+      window.location.href = deeplink;
+    } else {
+      console.error("Failed to get deeplink from the API response.");
+    }
+  };
+  async function installVpn() {
+    const response = await fetch("https://prostovpn.su/api/vpn/install", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Telegram-InitData": window.Telegram.WebApp.initData,
+      },
+    });
+  
+    // Возвращаем ответ в формате JSON
+    return response.json();
+  }
     function redirectToV2RayTun() {
      
       const checklog = localStorage.getItem('loaded');
@@ -251,7 +272,7 @@ export const PazzleAnim = ()=> {
             tl.add({
                 targets: ['.Purple_block',".Gray"], 
                 translateY: 128,
-                translateX:-46,
+                translateX:-45,
                 rotate:0,
                 opacity:1
            
