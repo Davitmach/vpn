@@ -120,15 +120,9 @@ export const PazzleAnim = ()=> {
   
   const Connect = async () => {
   
-  
 
-  
-    // Переход по URL
-    if (deeplink) {
       window.location.href = deeplink;
-    } else {
-      console.error("Failed to get deeplink from the API response.");
-    }
+  
   };
   async function installVpn() {
     const response = await fetch("https://prostovpn.su/api/vpn/install", {
@@ -141,11 +135,12 @@ export const PazzleAnim = ()=> {
   
     // Возвращаем ответ в формате JSON
     const data =await response.json();
+    if(data.deeplink) {
     setDeeplink(data.deeplink)
-  }
+  }}
     function redirectToV2RayTun() {
      
-      const checklog = localStorage.getItem('inst');
+      const checklog = localStorage.getItem('install');
       if(checklog !== 'true') { 
       const userAgent = navigator.userAgent.toLowerCase();
       
@@ -162,7 +157,7 @@ export const PazzleAnim = ()=> {
           alert("Ваша платформа не поддерживается!");
       }
     }
-    localStorage.setItem('inst','true');
+    localStorage.setItem('install','true');
   }
   
 useEffect(()=> {
