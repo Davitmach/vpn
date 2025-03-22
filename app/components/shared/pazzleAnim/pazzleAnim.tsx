@@ -119,12 +119,31 @@ export const PazzleAnim = ()=> {
    
   
     const Connect = async () => {
-      setTimeout(() => {
-        // Попробовать открыть в браузере, который поддерживает deeplink
-        window.location.href = "https://prostosetup.su:20196/servers/a298bb1239d04498"; 
-      }, 1000);
+      const url = "v2raytun://import/https://prostosetup.su:20196/servers/a298bb1239d04498";
+    
+      try {
+        const response = await fetch('/api/redirect', {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ url })  // Отправляем URL на сервер
+        });
+    
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+    
+        const data = await response.json();
+        console.log(data);  
+    
+      } catch (error) {
+        console.error('Error:', error);
+      }
     };
     
+    
+
   async function installVpn() {
     const response = await fetch("https://prostovpn.su/api/vpn/install", {
       method: "POST",
