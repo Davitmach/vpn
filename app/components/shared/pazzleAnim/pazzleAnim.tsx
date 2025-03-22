@@ -145,12 +145,26 @@ setTimeout(() => {
       const checklog = localStorage.getItem('install');
       if(checklog !== 'true') { 
       const userAgent = navigator.userAgent.toLowerCase();
-      
-      
       if (/iphone|ipad|ipod/.test(userAgent)) {
           window.location.href = "https://apps.apple.com/us/app/v2raytun/id6476628951";
       } else if (/android/.test(userAgent)) {
-        window.location.href = "market://details?id=com.v2raytun.android";
+        const marketUrl = "market://details?id=com.v2raytun.android";
+        const playStoreUrl = "https://play.google.com/store/apps/details?id=com.v2raytun.android";
+      
+        // Флаг, который указывает, был ли уже произведен редирект
+        let isRedirected = false;
+      
+        // Пытаемся открыть через market://
+        window.location.href = marketUrl;
+      
+        // Через 1 секунду проверяем, если страница не открылась, переходим на веб-страницу
+        setTimeout(() => {
+          // Если редирект не был выполнен, открываем веб-страницу
+          if (!isRedirected) {
+            window.location.href = playStoreUrl;
+            isRedirected = true; // Фиксируем, что редирект выполнен
+          }
+        }, 1000);
       } else if (/win/.test(userAgent)) {
           window.location.href = "https://github.com/2dust/v2rayN";
       } else if (/mac/.test(userAgent)) {
