@@ -166,10 +166,10 @@ export const PazzleAnim = ()=> {
   }
   
 useEffect(()=> {
-
-  window.Telegram.WebApp.onEvent("themeChanged", () => {
+  setTimeout(() => {
     installVpn();    
-  });
+  }, 500);
+
 },[])
   
     useEffect(() => { 

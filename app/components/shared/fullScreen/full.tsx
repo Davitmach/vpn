@@ -4,11 +4,14 @@ import { useEffect } from "react";
 
 export const Full = () => {
     useEffect(() => {
-        window.Telegram.WebApp.onEvent("themeChanged", () => {
+        
+        setTimeout(() => {
+            console.log(1);
+            
             if (window.Telegram.WebApp) {
                 window.Telegram.WebApp.expand();
             }      
-          });
+        }, 500);
       
     }, []);
 

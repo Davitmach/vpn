@@ -120,10 +120,9 @@ export const Tranzakcia = () => {
   }
   useEffect(() => {
    
-    window.Telegram.WebApp.onEvent("themeChanged", () => {
-      console.log("WebApp полностью загружен, выполняем запрос...");
+    setTimeout(() => {
       getTransactions();
-    });
+    }, 500);
     
   }, []);
   return (
