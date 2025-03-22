@@ -103,21 +103,23 @@ export const Tranzakcia = () => {
     }
   const [acitve, setActive] = useState(false);
   const [transactions, setTransactions] = useState<Trans[]>([]);
+  async function getTransactions() {
 
+    
+    const response = await fetch("https://prostovpn.su/api/subscription/transactions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Telegram-InitData": window.Telegram.WebApp.initData,
+      },
+    });
+    const data = await response.json();
+    console.log(data,'транзакций');
+    
+    setTransactions(data); // Устанавливаем массив транзакций
+  }
   useEffect(() => {
-    async function getTransactions() {
-      const response = await fetch("https://prostovpn.su/api/subscription/transactions", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "X-Telegram-InitData": window.Telegram.WebApp.initData,
-        },
-      });
-      const data = await response.json();
-      console.log(data,'транзакций');
-      
-      setTransactions(data); // Устанавливаем массив транзакций
-    }
+   
 
     getTransactions();
   }, []);
