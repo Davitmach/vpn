@@ -45,6 +45,8 @@ async function checkVpnStatus() {
             }
         });
         const data = await response.json();
+   
+        
         setActive(data ? 'conn' : 'dis'); // Обновляем состояние в зависимости от ответа API
     } catch (error) {
         console.error("Ошибка при проверке VPN статуса:", error);
@@ -61,18 +63,24 @@ async function getSubscriptionEndDate() {
         }
     });
     const data = await response.json();
+    console.log(data,'end_data');
     if (data && data !== null) {
         const formattedDate = data.replace(/-/g, '.'); // Заменяем "-" на "."
         setEnd(formattedDate);
+        setActive('conn');
+    }
+    else {
+        setActive('dis')
     }
 }
 
 
 useEffect(() => {
-    checkVpnStatus();
-    getSubscriptionEndDate()
+
+        getSubscriptionEndDate();
     
 }, []);
+
     return (
         <>
             <header className="w-full max-w-[350px] h-[80px] relative bg-[#56B2E5] flex items-center justify-between px-[20px] py-[10px] mx-auto rounded-b-[20px] rounded-tr-[20px] mt-[50px]">

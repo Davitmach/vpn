@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import Script from "next/script";
 import "./globals.scss";
+import { Full } from "./components/shared/fullScreen/full";
 
 
 
@@ -28,6 +29,7 @@ export default function RootLayout({
       <body
         className={`  antialiased`}
       >
+        <Full/>
         {children}
         <Script src="https://telegram.org/js/telegram-web-app.js"/>
       </body>

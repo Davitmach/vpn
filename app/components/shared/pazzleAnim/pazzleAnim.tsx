@@ -114,15 +114,14 @@ const Pazzle2 = ()=> {
 export const PazzleAnim = ()=> {
     const [active,setActive] = useState<number>(1);
     const [first,setFirst] = useState<boolean>(true);
+    const [deeplink,setDeeplink] = useState<string>('');
     const {push} = useRouter();
    
   
   const Connect = async () => {
-    // Получаем URL для подключения к VPN из API
-    const response = await installVpn();
   
-    // Извлекаем deeplink из ответа
-    const deeplink = response.deeplink;
+  
+
   
     // Переход по URL
     if (deeplink) {
@@ -142,6 +141,7 @@ export const PazzleAnim = ()=> {
   
     // Возвращаем ответ в формате JSON
     return response.json();
+    
   }
     function redirectToV2RayTun() {
      
@@ -165,7 +165,9 @@ export const PazzleAnim = ()=> {
     localStorage.setItem('loaded','true');
   }
   
-
+useEffect(()=> {
+installVpn();
+},[])
   
     useEffect(() => { 
 

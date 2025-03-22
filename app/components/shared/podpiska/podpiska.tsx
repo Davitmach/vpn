@@ -27,6 +27,8 @@ export const Podpiska = ()=> {
         })
     });
     const data = await response.json();
+    console.log(data,'создание платежа');
+    
     return data;
 }
 
