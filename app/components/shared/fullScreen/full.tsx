@@ -4,9 +4,14 @@ import { useEffect } from "react";
 
 export const Full = () => {
     useEffect(() => {
-        if (window.Telegram?.WebApp) {
-            window.Telegram.WebApp.expand();
-        }
+        setTimeout(() => {
+            console.log(1);
+            
+            if (window.Telegram.WebApp) {
+                window.Telegram.WebApp.expand();
+            }      
+        }, 1000);
+      
     }, []);
 
     
