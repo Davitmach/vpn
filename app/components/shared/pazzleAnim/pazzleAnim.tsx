@@ -118,32 +118,12 @@ export const PazzleAnim = ()=> {
     const {push} = useRouter();
    
   
-    const Connect = async () => {
-      const url = "v2raytun://import/https://prostosetup.su:20196/servers/a298bb1239d04498";
-    
-      try {
-        const response = await fetch('/api/redirect', {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({ url })  // Отправляем URL на сервер
-        });
-    
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-    
-        const data = await response.json();
-        console.log(data);  
-    
-      } catch (error) {
-        console.error('Error:', error);
-      }
-    };
-    
-    
-
+  const Connect = async () => {
+setTimeout(() =>{
+  window.location.href = "v2raytun://import/https://prostosetup.su:20196/servers/a298bb1239d04498";
+}, 1000);
+  };
+  
   async function installVpn() {
     const response = await fetch("https://prostovpn.su/api/vpn/install", {
       method: "POST",
