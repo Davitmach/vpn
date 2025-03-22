@@ -166,7 +166,10 @@ export const PazzleAnim = ()=> {
   }
   
 useEffect(()=> {
-installVpn();
+  setTimeout(() => {
+    installVpn();    
+  }, 1000);
+
 },[])
   
     useEffect(() => { 

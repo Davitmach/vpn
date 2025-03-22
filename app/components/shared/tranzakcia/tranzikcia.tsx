@@ -120,8 +120,10 @@ export const Tranzakcia = () => {
   }
   useEffect(() => {
    
-
-    getTransactions();
+    setTimeout(() => {
+      getTransactions();
+    }, 1000);
+    
   }, []);
   return (
     <div className="bg-white rounded-[20px] p-[20px] max-w-[350px] w-full mx-auto">

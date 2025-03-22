@@ -76,8 +76,10 @@ async function getSubscriptionEndDate() {
 
 
 useEffect(() => {
-
-        getSubscriptionEndDate();
+setTimeout(() => {
+    getSubscriptionEndDate();
+}, 1000);
+       
     
 }, []);
 
