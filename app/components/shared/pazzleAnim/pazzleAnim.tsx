@@ -120,8 +120,10 @@ export const PazzleAnim = ()=> {
   
   const Connect = async () => {
   
-setTimeout(() => {
-  window.location.href = deeplink;
+setTimeout(() =>{
+ 
+
+  window.location.href = "v2raytun://import/https://prostosetup.su:20196/servers/a298bb1239d04498";
 }, 1000);
     
   
