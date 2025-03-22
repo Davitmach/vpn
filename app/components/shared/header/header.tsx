@@ -5,38 +5,74 @@ import { useEffect, useState } from "react";
 
 interface IState {
     title: string;
-    description: string;
-    date?: string; // Опциональное поле, так как не во всех объектах оно есть
+  description:string
 }
 
 interface IStates {
     dis: IState;
-    dis2: IState;
+
     conn: IState;
 }
 
 const States: IStates = {
     dis: {
         title: "Отключен",
-        description: 'Нет подписки'
+       description:'Нет подписки'
     },
-    dis2: {
-        title: 'Отключен',
-        date: '9.06.2025',
-        description: 'Подписка закончилась',
-    },
+
     conn: {
         title: 'Подключен',
-        date: '9.06.2025',
-        description: 'Подписка закончилась',
+description:'Подписка закончилась'
     }
 }
 
+
+
 export const Header = () => {
     const {push,back} = useRouter();
+    const [end,setEnd] = useState<string>('')
+    const [activeTarif,setActiveTarif] = useState()
     const [active, setActive] = useState<keyof IStates>('conn');
 const path = usePathname();
 
+async function checkVpnStatus() {
+    try {
+        const response = await fetch("https://prostovpn.su/api/vpn/status", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-Telegram-InitData": window.Telegram.WebApp.initData
+            }
+        });
+        const data = await response.json();
+        setActive(data ? 'conn' : 'dis'); // Обновляем состояние в зависимости от ответа API
+    } catch (error) {
+        console.error("Ошибка при проверке VPN статуса:", error);
+        setActive('dis'); // В случае ошибки также ставим 'dis'
+    }
+}
+
+async function getSubscriptionEndDate() {
+    const response = await fetch("https://prostovpn.su/api/subscription/date_end", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-Telegram-InitData": window.Telegram.WebApp.initData
+        }
+    });
+    const data = await response.json();
+    if (data && data !== null) {
+        const formattedDate = data.replace(/-/g, '.'); // Заменяем "-" на "."
+        setEnd(formattedDate);
+    }
+}
+
+
+useEffect(() => {
+    checkVpnStatus();
+    getSubscriptionEndDate()
+    
+}, []);
     return (
         <>
             <header className="w-full max-w-[350px] h-[80px] relative bg-[#56B2E5] flex items-center justify-between px-[20px] py-[10px] mx-auto rounded-b-[20px] rounded-tr-[20px] mt-[50px]">
@@ -46,7 +82,7 @@ const path = usePathname();
                 </div>
                 <div className="flex flex-col h-full justify-between">
                     <div className="text-white font-[700] text-[18px] title">{States[active].title}</div>
-                    {States[active].date && <div className="text-white font-[400] text-[18px] date">{States[active].date}</div>}
+                    {end && <div className="text-white font-[400] text-[18px] date">{end}</div>}
                 </div>
                 <div className="Back absolute bg-[#56B2E5] rounded-t-[20px] top-[-25px] p-[10px] left-[0] cursor-pointer">
                 <svg onClick={()=> {

@@ -1,13 +1,33 @@
 'use client';
-import { useRouter } from 'next/navigation';
+import { useRouter, } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import './style.scss';
+
 export const Ref = ()=> {
+    const [userInfo, setUserInfo] = useState<{ username: string | null; id: string | null }>({
+        username: null,
+        id: null
+    });
     const {push} = useRouter();
+    useEffect(() => {
+        try {
+            const initData = window.Telegram.WebApp.initData;
+            const params = new URLSearchParams(initData);
+            const user = JSON.parse(params.get("user") || "{}");
+
+            setUserInfo({
+                username: user.username ? `@${user.username}` : "Неизвестный",
+                id: user.id ? `id${user.id}` : "Нет ID"
+            });
+        } catch (error) {
+            console.error("Ошибка получения данных пользователя:", error);
+        }
+    }, []);
     return(
         <div className="bg-[#BBF6E2] p-[20px] rounded-[20px] max-w-[350px] mx-auto w-full ">
 <div className="flex w-full items-center justify-between">
-    <div className="font-[600] text-[24px]">@ktoeto</div>
-    <div className="font-[400] text-[18px]">id2332094825</div>
+    <div className="font-[600] text-[24px]">{userInfo.username}</div>
+    <div className="font-[400] text-[18px]">{userInfo.id}</div>
 </div>
 <div className="flex flex-col gap-[10px] mt-[20px] Ref_btns">
 <svg onClick={()=> {

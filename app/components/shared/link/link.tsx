@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 import "./style.scss";
 
 export const Link = () => {
@@ -62,22 +62,37 @@ export const Link = () => {
 
 export const LinkRef = () => {
   const [isCopied, setIsCopied] = useState(false);
-
+  const [referralLink, setReferralLink] = useState<string>("");
   const copyToClipboard = () => {
-    navigator.clipboard.writeText("Текст для копирования");
+    navigator.clipboard.writeText(referralLink);
     setIsCopied(true);
     setTimeout(() => setIsCopied(false), 500); // Вернем размер через 0.5 сек
   };
+  useEffect(() => {
+    try {
+      const initData = window.Telegram.WebApp.initData;
+      const params = new URLSearchParams(initData);
+      const user = JSON.parse(params.get("user") || "{}");
 
+      if (user.id) {
+        setReferralLink(`https://t.me/prostoovpn_bot?start=${user.id}_ref`);
+      } else {
+        setReferralLink("https://t.me/prostoovpn_bot?start=unknown_ref");
+      }
+    } catch (error) {
+      console.error("Ошибка получения userId:", error);
+      setReferralLink("https://t.me/prostoovpn_bot?start=unknown_ref");
+    }
+  }, []);
   return (
     <div className="max-w-[350px] w-full mx-auto h-auto bg-[#56B2E5] rounded-[20px] p-[20px] gap-[12px] flex flex-col">
       <div className="font-[700] text-[18px] text-white">Ваша реферальная ссылка</div>
       <div className="relative">
         <input
           readOnly
-          className="py-[4px] bg-white rounded-[20px] w-full px-[10px] outline-none text-[16px]"
+          className="py-[4px] bg-white rounded-[20px] w-full px-[10px] outline-none text-[13px]"
           type="text"
-          defaultValue={"https//prostovpn12353450912-39123"}
+          defaultValue={referralLink}
         />
 <div className="Link_copy absolute top-[50%] right-[10px] translate-y-[-50%] cursor-pointer">
         <svg

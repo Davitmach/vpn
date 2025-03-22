@@ -1,17 +1,21 @@
 "use client";
 import "./style.scss";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 
 interface IBlock {
   price: number;
   date: string;
   totalTime: string;
+  check:string
+
 }
 interface IDeposit {
   price:number,
   tarif:string,
-  user:string
+  user:string,
+  
 }
+
 export const Block = (props: IBlock) => {
   const [isCopied, setIsCopied] = useState(false);
 
@@ -91,7 +95,30 @@ export const DepositBlock = (props:IDeposit)=> {
   )
 }
 export const Tranzakcia = () => {
+  interface Trans {
+    amount:number 
+    cheque: string
+    date_start: string
+    period:string
+    }
   const [acitve, setActive] = useState(false);
+  const [transactions, setTransactions] = useState<Trans[]>([]);
+
+  useEffect(() => {
+    async function getTransactions() {
+      const response = await fetch("https://prostovpn.su/api/subscription/transactions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Telegram-InitData": window.Telegram.WebApp.initData,
+        },
+      });
+      const data = await response.json();
+      setTransactions(data); // Устанавливаем массив транзакций
+    }
+
+    getTransactions();
+  }, []);
   return (
     <div className="bg-white rounded-[20px] p-[20px] max-w-[350px] w-full mx-auto">
       <div className="flex w-full items-center justify-between">
@@ -125,9 +152,18 @@ export const Tranzakcia = () => {
           acitve == true ? "h-[200px]" : "h-[0]"
         }`}
       >
-        <Block totalTime="Месяц" price={400} date="22.01.2025" />
-        <Block totalTime="Месяц" price={400} date="22.01.2025" />
-        <Block totalTime="Месяц" price={400} date="22.01.2025" />
+        {transactions.length > 0 && (
+          transactions.map((transaction, index) => (
+            <Block
+              key={index}
+             price={transaction.amount}
+      check={transaction.cheque}
+      date={transaction.date_start}
+      totalTime={transaction.period}
+            />
+          ))
+        ) }
+       
       </div>
     </div>
   );
@@ -192,6 +228,7 @@ export const Tranzakcia = () => {
 
 export const Deposit = ()=> {
   const [acitve, setActive] = useState(false);
+ 
     return(
       <div className="bg-white rounded-[20px] p-[20px] max-w-[350px] w-full mx-auto">
       <div className="flex w-full items-center justify-between">
@@ -225,6 +262,7 @@ export const Deposit = ()=> {
           acitve == true ? "h-[200px]" : "h-[0]"
         }`}
       >
+         
        <DepositBlock price={344} tarif="Месяц" user="Qaswdea"/>
        <DepositBlock price={344} tarif="Месяц" user="Qaswdea"/>
        <DepositBlock price={344} tarif="Месяц" user="Qaswdea"/>
