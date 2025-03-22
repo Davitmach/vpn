@@ -120,8 +120,10 @@ export const PazzleAnim = ()=> {
   
   const Connect = async () => {
   
-
-      window.location.href = deeplink;
+setTimeout(() => {
+  window.location.href = deeplink;
+}, 1000);
+    
   
   };
   async function installVpn() {
