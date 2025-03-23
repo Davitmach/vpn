@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/telegram-web-app": "^7.10.1",
     "animejs": "^3.2.2",
     "axios": "^1.8.2",
     "next": "^15.2.2-canary.3",
