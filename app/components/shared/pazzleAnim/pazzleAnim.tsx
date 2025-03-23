@@ -171,7 +171,7 @@ export const PazzleAnim = ()=> {
       } 
       else if (/android/.test(userAgent)) {
         window.open('market://details?id=com.v2raytun.android', "_blank")
-        alert('PROVERKA')
+       
   // redirectToUrl('market://details?id=com.v2raytun.android')
       
       }
@@ -182,7 +182,7 @@ export const PazzleAnim = ()=> {
       } else if (/mac/.test(userAgent)) {
           window.location.href = "https://github.com/2dust/v2rayN";
       } else {
-          alert("Ваша платформа не поддерживается!");
+        
       }
     }
     localStorage.setItem('install','true');
