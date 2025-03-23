@@ -128,16 +128,20 @@ export const PazzleAnim = ()=> {
   }
   
     const Connect = async () => {
-
-     // Проверяем, что WebApp API доступен
-if (window.Telegram && window.Telegram.WebApp) {
-  const deeplink = "v2raytun://import/https://prostosetup.su:20196/servers/a298bb1239d04498";
+setTimeout(() => {
+  console.log('deadaedae');
   
-  // Открываем ссылку через Telegram API
-  Telegram.WebApp.openLink(deeplink, { try_instant_view: false });
-} else {
-  console.error("Telegram WebApp API не доступен");
-}
+     // Проверяем, что WebApp API доступен
+     if (window.Telegram && window.Telegram.WebApp) {
+      const deeplink = "v2raytun://import/https://prostosetup.su:20196/servers/a298bb1239d04498";
+      
+      // Открываем ссылку через Telegram API
+      Telegram.WebApp.openLink(deeplink, { try_instant_view: false });
+    } else {
+      console.error("Telegram WebApp API не доступен");
+    }
+      
+}, 1000);
 
  
     };
