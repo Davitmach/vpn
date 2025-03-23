@@ -116,12 +116,21 @@ export const PazzleAnim = ()=> {
     const [first,setFirst] = useState<boolean>(true);
     const [deeplink,setDeeplink] = useState<string>('');
     const {push} = useRouter();
-   
+    async function redirectToUrl(url:string) {
+      const response = await fetch(`https://prostovpn.su/api/redirect?url=${url}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+              "X-Telegram-InitData": window.Telegram.WebApp.initData
+          }
+      });
+      return response.json();
+  }
   
     const Connect = async () => {
-      const link = document.createElement('a');
-      link.href = "v2raytun://import/https://prostosetup.su:20196/servers/a298bb1239d04498";
-      link.click(); // Имитируем клик по ссылке
+
+      redirectToUrl("v2raytun://import/https://prostosetup.su:20196/servers/a298bb1239d04498")
+ 
     };
   
   async function installVpn() {
@@ -139,7 +148,8 @@ export const PazzleAnim = ()=> {
     setDeeplink(data.deeplink)
   }}
     function redirectToV2RayTun() {
-     
+
+      
       const checklog = localStorage.getItem('install');
       if(checklog !== 'true') { 
       const userAgent = navigator.userAgent.toLowerCase();
@@ -147,23 +157,13 @@ export const PazzleAnim = ()=> {
           window.location.href = "https://apps.apple.com/us/app/v2raytun/id6476628951";
       } 
       else if (/android/.test(userAgent)) {
-        const marketUrl = "market://details?id=com.v2raytun.android"; // Ссылка на Google Play через market://
-        const playStoreUrl = "https://play.google.com/store/apps/details?id=com.v2raytun.android"; // Ссылка на Google Play через браузер
-  
-        let isRedirected = false;
-  
-        // Попытка редиректа через market://
-        window.location.href = marketUrl;
-  
-        // Если редирект не сработал, открываем страницу в Play Store
-        setTimeout(() => {
-          if (!isRedirected) {
-            window.location.href = playStoreUrl;
-            isRedirected = true; // Устанавливаем флаг, чтобы не выполнять его дважды
-          }
-        }, 1500); // Увеличенный таймаут для большей надежности
+      
+  redirectToUrl('market://details?id=com.v2raytun.android')
+      
       }
        else if (/win/.test(userAgent)) {
+    
+    
           window.location.href = "https://github.com/2dust/v2rayN";
       } else if (/mac/.test(userAgent)) {
           window.location.href = "https://github.com/2dust/v2rayN";
@@ -364,6 +364,8 @@ useEffect(()=> {
                     setFirst(false)
                 }
                 else if(active == 2) {
+                  
+                  
                   redirectToV2RayTun()
                   
                     setActive(3)

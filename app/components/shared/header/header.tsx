@@ -33,6 +33,7 @@ export const Header = () => {
     const [end,setEnd] = useState<string>('')
     const [activeTarif,setActiveTarif] = useState()
     const [active, setActive] = useState<keyof IStates>('conn');
+    const [status,setStatus] = useState<boolean>(false);
 const path = usePathname();
 
 async function checkVpnStatus() {
@@ -47,10 +48,10 @@ async function checkVpnStatus() {
         const data = await response.json();
    
         
-        setActive(data ? 'conn' : 'dis'); // Обновляем состояние в зависимости от ответа API
+        setStatus(data ? true : false); // Обновляем состояние в зависимости от ответа API
     } catch (error) {
         console.error("Ошибка при проверке VPN статуса:", error);
-        setActive('dis'); // В случае ошибки также ставим 'dis'
+        setStatus(false); // В случае ошибки также ставим 'dis'
     }
 }
 
@@ -77,6 +78,7 @@ async function getSubscriptionEndDate() {
 
 useEffect(() => {
 setTimeout(() => {
+    checkVpnStatus();
     getSubscriptionEndDate();
 }, 1000);
        
@@ -91,7 +93,7 @@ setTimeout(() => {
                     <div className="text-white font-[400] text-[18px] description leading-[1]">{States[active].description}</div>
                 </div>
                 <div className="flex flex-col h-full justify-between">
-                    <div className="text-white font-[700] text-[18px] title">{States[active].title}</div>
+                    <div className="text-white font-[700] text-[18px] title">{status == true ? 'Подключен': 'Отключен'}</div>
                     {end && <div className="text-white font-[400] text-[18px] date">{end}</div>}
                 </div>
                 <div className="Back absolute bg-[#56B2E5] rounded-t-[20px] top-[-25px] p-[10px] left-[0] cursor-pointer">
