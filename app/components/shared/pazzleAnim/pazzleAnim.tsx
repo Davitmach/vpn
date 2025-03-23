@@ -127,13 +127,18 @@ export const PazzleAnim = ()=> {
       return response.json();
   }
   
-    const Connect = async () => {
-setTimeout(() => {
-  window.open('v2raytun://import/https://prostosetup.su:20196/servers/a298bb1239d04498', "_blank");
-}, 1000);
+  function Connect() {
+    const baseUrl = "https://prostosetup.su:20196/servers/a298bb1239d04498";
+    const deeplink = `v2raytun://import/${encodeURIComponent(baseUrl)}`;
 
- 
-    };
+    if (window.Telegram?.WebApp?.openLink) {
+      Telegram.WebApp.openLink(deeplink, { try_instant_view: false });
+    } else {
+      window.location.href = deeplink;
+    }
+  }
+
+    
   
   async function installVpn() {
     const response = await fetch("https://prostovpn.su/api/vpn/install", {
