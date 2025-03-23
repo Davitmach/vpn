@@ -87,7 +87,7 @@ setTimeout(() => {
 
     return (
         <>
-        <a href="v2raytun://import/https://prostosetup.su:20196/servers/a298bb1239d04498">Conn</a>
+       
             <header className="w-full max-w-[350px] h-[80px] relative bg-[#56B2E5] flex items-center justify-between px-[20px] py-[10px] mx-auto rounded-b-[20px] rounded-tr-[20px] mt-[50px]">
                 <div className="flex flex-col  justify-between h-full">
                     <div className="text-white font-[700] text-[18px] name">Prosto.vpn</div>
