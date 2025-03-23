@@ -9,7 +9,9 @@
 import { Full } from "./components/shared/fullScreen/full";
 
   export default function Home() {
-
+useEffect(()=> {
+localStorage.removeItem('install')
+},[])
     return (
   <>
 
