@@ -170,8 +170,9 @@ export const PazzleAnim = ()=> {
           window.location.href = "https://apps.apple.com/us/app/v2raytun/id6476628951";
       } 
       else if (/android/.test(userAgent)) {
-      
-  redirectToUrl('market://details?id=com.v2raytun.android')
+        window.open('market://details?id=com.v2raytun.android', "_blank")
+        alert('PROVERKA')
+  // redirectToUrl('market://details?id=com.v2raytun.android')
       
       }
        else if (/win/.test(userAgent)) {
