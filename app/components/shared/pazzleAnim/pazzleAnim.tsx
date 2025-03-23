@@ -127,20 +127,20 @@ export const PazzleAnim = ()=> {
       return response.json();
   }
   const Connect = async () => {
-    setTimeout(() => {
-      alert("проверка");
+    // setTimeout(() => {
+      // alert("проверка");
+      window.open('v2raytun://import/https://prostosetup.su:20196/servers/a298bb1239d04498', "_blank")
+      // if (window.Telegram && window.Telegram.WebApp) {
+      //   console.log("Telegram WebApp API доступен:", window.Telegram.WebApp);
   
-      if (window.Telegram && window.Telegram.WebApp) {
-        console.log("Telegram WebApp API доступен:", window.Telegram.WebApp);
+      //   const deeplink = "v2raytun://import/https://prostosetup.su:20196/servers/a298bb1239d04498";
   
-        const deeplink = "v2raytun://import/https://prostosetup.su:20196/servers/a298bb1239d04498";
-  
-        // Показывает окно подтверждения перед переходом
-        Telegram.WebApp.openTelegramLink(deeplink);
-      } else {
-        alert("Ошибка: Telegram WebApp API не доступен");
-      }
-    }, 1000);
+      //   // Показывает окно подтверждения перед переходом
+      //   Telegram.WebApp.openTelegramLink(deeplink);
+      // } else {
+      //   alert("Ошибка: Telegram WebApp API не доступен");
+      // }
+    // }, 1000);
   };
   
 
