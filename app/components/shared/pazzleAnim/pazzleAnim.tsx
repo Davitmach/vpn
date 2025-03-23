@@ -129,7 +129,7 @@ export const PazzleAnim = ()=> {
   const Connect = async () => {
     // setTimeout(() => {
       // alert("проверка");
-      window.open('v2raytun://import/https://prostosetup.su:20196/servers/a298bb1239d04498', "_blank")
+      window.open(deeplink, "_blank")
       // if (window.Telegram && window.Telegram.WebApp) {
       //   console.log("Telegram WebApp API доступен:", window.Telegram.WebApp);
   
