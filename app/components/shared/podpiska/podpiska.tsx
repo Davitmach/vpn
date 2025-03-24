@@ -96,7 +96,7 @@ else if(active == '4') {
         <div className="text-white font-[600] text-[24px]">Выберите подписку</div>
         <div className=" flex flex-col gap-[5px]">
 
-        {sub == false && <svg onClick={()=> {
+        {localStorage.getItem('sub') == 'false' && <svg onClick={()=> {
             setActive('probni')
         }} className="mx-auto max-w-[350px] w-full h-[auto] mt-[10px]"  viewBox="0 0 350 62" fill="none" xmlns="http://www.w3.org/2000/svg">
 <rect width="350" height="62" rx="20" fill={ active =='probni' ?'#C4FF35' : '#BBF6E2'}/>
