@@ -10,18 +10,21 @@ export const Ref = ()=> {
     });
     const {push} = useRouter();
     useEffect(() => {
-        try {
-            const initData = window.Telegram.WebApp.initData;
-            const params = new URLSearchParams(initData);
-            const user = JSON.parse(params.get("user") || "{}");
-
-            setUserInfo({
-                username: user.username ? `@${user.username}` : "Неизвестный",
-                id: user.id ? `id${user.id}` : "Нет ID"
-            });
-        } catch (error) {
-            console.error("Ошибка получения данных пользователя:", error);
-        }
+        setTimeout(() => {
+            try {
+                const initData = window.Telegram.WebApp.initData;
+                const params = new URLSearchParams(initData);
+                const user = JSON.parse(params.get("user") || "{}");
+    
+                setUserInfo({
+                    username: user.username ? `@${user.username}` : "Неизвестный",
+                    id: user.id ? `id${user.id}` : "Нет ID"
+                });
+            } catch (error) {
+                console.error("Ошибка получения данных пользователя:", error);
+            }         
+        }, 1000);
+   
     }, []);
     return(
         <div className="bg-[#BBF6E2] p-[20px] rounded-[20px] max-w-[350px] mx-auto w-full ">

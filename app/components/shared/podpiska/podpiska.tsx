@@ -1,6 +1,6 @@
 "use client";
 import axios from "axios";
-import { act, useEffect, useState } from "react";
+import { act, useEffect, useLayoutEffect, useState } from "react";
 import { CancelBtn } from "../cancelBtn/cancelBtn";
 
 import { Infoblock } from "../infoBlock/infoBlock";
@@ -89,14 +89,22 @@ else if(active == '4') {
 }
 
   },[active,count])
-
+useLayoutEffect(()=> {
+const sub =localStorage.getItem('sub');
+if(sub == 'true') {
+setSub(false)
+}
+else {
+  setSub(true);
+}
+},[])
 
     return(
       <div className="max-w-[350px] w-full mx-auto mt-[10px]">
         <div className="text-white font-[600] text-[24px]">Выберите подписку</div>
         <div className=" flex flex-col gap-[5px]">
 
-        {sub == false && <svg onClick={()=> {
+        {sub == true && <svg onClick={()=> {
             setActive('probni')
         }} className="mx-auto max-w-[350px] w-full h-[auto] mt-[10px]"  viewBox="0 0 350 62" fill="none" xmlns="http://www.w3.org/2000/svg">
 <rect width="350" height="62" rx="20" fill={ active =='probni' ?'#C4FF35' : '#BBF6E2'}/>

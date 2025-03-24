@@ -34,6 +34,7 @@ export const Header = () => {
     const [activeTarif,setActiveTarif] = useState()
     const [active, setActive] = useState<keyof IStates>('conn');
     const [status,setStatus] = useState<boolean>(false);
+
 const path = usePathname();
 
 async function checkVpnStatus() {
@@ -64,14 +65,16 @@ async function getSubscriptionEndDate() {
         }
     });
     const data = await response.json();
-    console.log(data,'end_data');
+  
     if (data && data !== null) {
         const formattedDate = data.replace(/-/g, '.'); // Заменяем "-" на "."
         setEnd(formattedDate);
         setActive('conn');
+        localStorage.setItem('sub','true')
     }
     else {
         setActive('dis')
+        localStorage.setItem('sub','false')
     }
 }
 
@@ -80,8 +83,12 @@ useEffect(() => {
 setTimeout(() => {
     checkVpnStatus();
     getSubscriptionEndDate();
+    Telegram.WebApp.setHeaderColor('#393957');       
 }, 1000);
+<<<<<<< HEAD
         
+=======
+>>>>>>> 11c1254aeb4bb85aba9cb974dbdc1f32b7db67c4
 
     
 }, []);
