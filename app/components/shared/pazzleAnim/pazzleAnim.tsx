@@ -171,8 +171,8 @@ export const PazzleAnim = ()=> {
       } 
       else if (/android/.test(userAgent)) {
         window.open('market://details?id=com.v2raytun.android', "_blank")
-       
-  // redirectToUrl('market://details?id=com.v2raytun.android')
+        
+
       
       }
        else if (/win/.test(userAgent)) {
