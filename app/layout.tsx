@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { motion, AnimatePresence } from "framer-motion";
+
 import Script from "next/script";
 import "./globals.scss";
 import { Full } from "./components/shared/fullScreen/full";
-// import PageTransition from "./components/shared/transition/transition";
+import PageTransition from "./components/shared/transition/transition";
 
 
 
@@ -31,9 +31,9 @@ export default function RootLayout({
         className={`overflow-x-hidden   antialiased`}
       >
         <Full/>
-     {/* <PageTransition> */}
+     <PageTransition>
             {children}
-            {/* </PageTransition> */}
+            </PageTransition>
         <Script src="https://telegram.org/js/telegram-web-app.js"/>
       </body>
     </html>
