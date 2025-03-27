@@ -31,30 +31,11 @@ const [sub,setSub] = useState<boolean>(false);
     
     return data;
 }
-async function getSubscriptionEndDate() {
-  const response = await fetch("https://prostovpn.su/api/subscription/date_end", {
-      method: "POST",
-      headers: {
-          "Content-Type": "application/json",
-          "X-Telegram-InitData": window.Telegram.WebApp.initData
-      }
-  });
-  const data = response.json();
-  if(data !== null) {
-    setSub(true);
-  }
-}
-useEffect(()=> {
-setTimeout(() => {
-  getSubscriptionEndDate();
-}, 1000);
-},[])
+
 
 const HandleSubmit = async () => {
   if (amount !== 0) {
       const paymentResponse = await createPayment(amount, activeTarif, count);
-
-      
       if (paymentResponse) {
          
           window.location.href = paymentResponse;  
