@@ -75,13 +75,13 @@ export const LinkRef = () => {
       const user = JSON.parse(params.get("user") || "{}");
 
       if (user.id) {
-        setReferralLink(`https://t.me/prostoovpn_bot?start=${user.id}_ref`);
+        setReferralLink(`https://t.me/prostoovpn_bot?start=${user.id}`);
       } else {
-        setReferralLink("https://t.me/prostoovpn_bot?start=unknown_ref");
+        setReferralLink("https://t.me/prostoovpn_bot?start=unknown");
       }
     } catch (error) {
       console.error("Ошибка получения userId:", error);
-      setReferralLink("https://t.me/prostoovpn_bot?start=unknown_ref");
+      setReferralLink("https://t.me/prostoovpn_bot?start=unknown");
     }
   }, []);
   return (
