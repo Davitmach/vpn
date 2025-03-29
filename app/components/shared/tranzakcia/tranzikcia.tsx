@@ -156,7 +156,7 @@ export const Tranzakcia = () => {
       </div>
       <div
         style={{ transition: ".2s" }}
-        className={`overflow-hidden duration-[700] ${
+        className={`overflow-y-auto duration-[700] ${
           acitve == true ? "h-[200px]" : "h-[0]"
         }`}
       >
@@ -172,7 +172,7 @@ export const Tranzakcia = () => {
             />
           ))
         ) }
-       
+
       </div>
     </div>
   );

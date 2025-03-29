@@ -13,6 +13,7 @@ export const Podpiska = ()=> {
   const [amount,setAmount] = useState<number>(0) 
   const [activeTarif,setActiveTarif] = useState<string>('');
 const [sub,setSub] = useState<boolean>(false);
+const [gift,setGift] = useState<boolean>(false);
   async function createPayment(amount:number, period:string, numberDevices:number) {
     const response = await fetch("https://prostovpn.su/api/subscription/create_payment", {
         method: "POST",
@@ -32,6 +33,22 @@ const [sub,setSub] = useState<boolean>(false);
     return data;
 }
 
+async function checkReferralGift() {
+  const response = await fetch("https://prostovpn.su/api/referral_system/check_gift", {
+      method: "POST",
+      headers: {
+          "Content-Type": "application/json",
+          "X-Telegram-InitData": window.Telegram.WebApp.initData
+      }
+  });
+  const data = await response.json();
+ if(data == true) {
+  setGift(true)
+ }  
+ else {
+  setGift(false)
+ }
+}
 
 const HandleSubmit = async () => {
   if (amount !== 0) {
@@ -49,6 +66,10 @@ const HandleSubmit = async () => {
 if(active == 'probni') {
   setActiveTarif('Пробный период')
 setAmount(1);
+}
+else if(active == 'gift') {
+  setActiveTarif('Подарок по реф')
+  setAmount(1)
 }
 else if(active == '1') {
   setActiveTarif('1 месяц')
@@ -79,17 +100,21 @@ else {
   setSub(true);
 }
 },[])
-
+useEffect(()=> {
+setTimeout(()=> {
+checkReferralGift()
+},1000)
+},[])
     return(
       <div className="max-w-[350px] w-full mx-auto mt-[10px]">
         <div className="text-white font-[600] text-[24px]">Выберите подписку</div>
         <div className=" flex flex-col gap-[5px]">
 
         {sub == true && <svg onClick={()=> {
-            setActive('probni')
+            setActive(gift == true ?  'gift':'probni')
         }} className="mx-auto max-w-[350px] w-full h-[auto] mt-[10px]"  viewBox="0 0 350 62" fill="none" xmlns="http://www.w3.org/2000/svg">
 <rect width="350" height="62" rx="20" fill={ active =='probni' ?'#C4FF35' : '#BBF6E2'}/>
-<text fill="black" x="38" font-size="18" y="36" font-weight="300">Пробный период / 3 дня за 1 рубль</text>
+<text fill="black" x="38" font-size="18" y="36" font-weight="300">Пробный период / {gift == true ? '7 дней' : '3 дня'} за 1 рубль</text>
 
 </svg>}  
           <svg className="mx-auto max-w-[350px] w-full h-[auto] mt-[10px]" viewBox="0 0 350 245" fill="none" xmlns="http://www.w3.org/2000/svg">
