@@ -89,7 +89,7 @@ export const DepositBlock = (props:IDeposit)=> {
         <div className="text-[16px] font-[400]">{`${props.percent} от ${props.amount}`}</div>
       </div>
       <div className="flex flex-col items-end">
-        <div className="inline-flex">от {props.user}</div>
+        <div className="inline-flex">от @{props.user}</div>
         <div className="flex items-center justify-end gap-[10px]">{`Тариф <<${props.tarif}>>  ` }</div>
       </div>
     </div>
@@ -296,7 +296,7 @@ export const Deposit = ()=> {
       </div>
       <div
         style={{ transition: ".2s" }}
-        className={`overflow-hidden duration-[700] ${
+        className={`overflow-y-auto duration-[700] ${
           acitve == true ? "h-[200px]" : "h-[0]"
         }`}
       >
