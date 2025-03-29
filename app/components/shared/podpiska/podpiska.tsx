@@ -120,7 +120,7 @@ else {
 
 </svg>
 
-{/* <CancelBtn/> */}
+{sub == false && <CancelBtn/>}
 <div className="Counter w-full flex justify-between  mt-[20px]">
 
   <div className="text-[18px] font-[400] text-white relative">Выберите количество устройств</div>

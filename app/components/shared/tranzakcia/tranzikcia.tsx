@@ -10,10 +10,11 @@ interface IBlock {
 
 }
 interface IDeposit {
-  price:number,
+  earn:number,
   tarif:string,
   user:string,
-  
+  amount:number,
+  percent:string
 }
 
 export const Block = (props: IBlock) => {
@@ -84,8 +85,8 @@ export const DepositBlock = (props:IDeposit)=> {
   return(
 <div className="flex w-full items-center justify-between border-b border-b-[#EFEFEF] py-[10px]">
       <div>
-        <div className="text-[16px] text-[#56B2E5] ">{(props.price *15 )/100} рублей</div>
-        <div className="text-[16px] font-[400]">{`15% от ${props.price}`}</div>
+        <div className="text-[16px] text-[#56B2E5] ">{props.earn} рублей</div>
+        <div className="text-[16px] font-[400]">{`${props.percent} от ${props.amount}`}</div>
       </div>
       <div className="flex flex-col items-end">
         <div className="inline-flex">от {props.user}</div>
@@ -235,8 +236,37 @@ export const Tranzakcia = () => {
 
 
 export const Deposit = ()=> {
+  interface Dep {
+    username: string,
+        tariff:string,
+        earned: number,
+        amount: number,
+        percentage_income: string
+  }
   const [acitve, setActive] = useState(false);
- 
+  const [transactions, setTransactions] = useState<Dep[]>([]);
+  async function getTransactions() {
+
+    
+    const response = await fetch("https://prostovpn.su/api/referral_system/accrual_history", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Telegram-InitData": window.Telegram.WebApp.initData,
+      },
+    });
+    const data = await response.json();
+    console.log(data,'начисления');
+    
+    setTransactions(data);
+  }
+  useEffect(() => {
+   
+    setTimeout(() => {
+      getTransactions();
+    }, 1000);
+    
+  }, []);
     return(
       <div className="bg-white rounded-[20px] p-[20px] max-w-[350px] w-full mx-auto">
       <div className="flex w-full items-center justify-between">
@@ -270,11 +300,12 @@ export const Deposit = ()=> {
           acitve == true ? "h-[200px]" : "h-[0]"
         }`}
       >
-         
-       <DepositBlock price={344} tarif="Месяц" user="Qaswdea"/>
-       <DepositBlock price={344} tarif="Месяц" user="Qaswdea"/>
-       <DepositBlock price={344} tarif="Месяц" user="Qaswdea"/>
-
+             {transactions  && (
+          transactions.map((transaction, index) => (
+            <DepositBlock key={index} user={transaction.username} tarif={transaction.tariff} amount={transaction.amount} earn={transaction.earned} percent={transaction.percentage_income} />
+          ))
+        ) }
+     
       </div>
     </div>
     )
