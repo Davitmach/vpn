@@ -52,7 +52,7 @@ setAmount(1);
 }
 else if(active == '1') {
   setActiveTarif('1 месяц')
-  count == 1 ? setAmount(199) : count == 2 ? setAmount(249) : count == 3 ?setAmount(298) : setAmount(348)
+  count == 1 ? setAmount(10) : count == 2 ? setAmount(249) : count == 3 ?setAmount(298) : setAmount(348)
 }
 else if(active == '2') {
   setActiveTarif('6 месяцев')
