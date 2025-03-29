@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import './style.scss';
 
 export const Program = ()=> {
-    const [count,setCount] = useState<number>(500)
+    const [count,setCount] = useState<number>(0)
     const [lvl,setLvl] = useState<number>(1);
     const [progress, setProgress] = useState<number>(0);
     const [nextLvlCount, setNextLvlCount] = useState<number>(0);
