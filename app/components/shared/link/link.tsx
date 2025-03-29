@@ -128,6 +128,6 @@ export const LinkRef = () => {
         </svg>
         </div>
       </div>
-      <div className="font-[200] text-[16px] text-white">3 дня VPN вашему другу за 1 рубль</div>
+      <div className="font-[200] text-[16px] text-white">7 дней VPN вашему другу за 1 рубль</div>
     </div>  );
 };
