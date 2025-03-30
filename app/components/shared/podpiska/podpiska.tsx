@@ -14,6 +14,7 @@ export const Podpiska = ()=> {
   const [activeTarif,setActiveTarif] = useState<string>('');
 const [sub,setSub] = useState<boolean>(false);
 const [gift,setGift] = useState<boolean>(false);
+const [attach,setAttach ] = useState<boolean>(false);
   async function createPayment(amount:number, period:string, numberDevices:number) {
     const response = await fetch("https://prostovpn.su/api/subscription/create_payment", {
         method: "POST",
@@ -48,6 +49,22 @@ async function checkReferralGift() {
  else {
   setGift(false)
  }
+}
+async function getAttach() {
+  const response = await fetch("https://prostovpn.su/api/subscription/check_attach", {
+      method: "POST",
+      headers: {
+          "Content-Type": "application/json",
+          "X-Telegram-InitData": window.Telegram.WebApp.initData
+      }
+  });
+  const data = await response.json();
+  if(data == true) {
+    setAttach(true)
+  }
+  else {
+    setAttach(false)
+  }
 }
 
 const HandleSubmit = async () => {
@@ -102,6 +119,7 @@ else {
 },[])
 useEffect(()=> {
 setTimeout(()=> {
+  getAttach()
 checkReferralGift()
 },1000)
 },[])
@@ -146,7 +164,7 @@ checkReferralGift()
 
 </svg>
 
-{sub == false && <CancelBtn/>}
+{attach == true && <CancelBtn/>}
 <div className="Counter w-full flex justify-between  mt-[20px]">
 
   <div className="text-[18px] font-[400] text-white relative">Выберите количество устройств</div>

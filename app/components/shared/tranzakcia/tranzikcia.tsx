@@ -313,6 +313,40 @@ export const Deposit = ()=> {
 
 export const Top = ()=> {
   const [acitve, setActive] = useState(false);
+  const [top,setTop] = useState<Top[]>();
+  const [my,setMy] = useState<my>();
+interface Top {
+  count: number
+username: string
+}
+interface my{
+  count: number
+position: number
+username: string
+}
+  async function getTop() {
+    const response = await fetch("https://prostovpn.su/api/referral_system/top", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-Telegram-InitData": window.Telegram.WebApp.initData
+        }
+    });
+    const data = await response.json();
+    if(data) {
+      setMy(data.current_rank);
+      setTop(data.top_referrers);
+    }
+}
+useEffect(()=> {
+setTimeout(() => {
+  getTop()
+}, 1000);
+},[])
+const referralsNeeded =
+top && top.length >= 10 && my
+  ? Math.max(0, top[9].count - my.count + 1)
+  : null;
     return(
       <div className="bg-white rounded-[20px] p-[20px] max-w-[350px] w-full mx-auto">
       <div className="flex w-full items-center justify-between">
@@ -342,29 +376,43 @@ export const Top = ()=> {
       </div>
       <div
         style={{ transition: ".2s" }}
-        className={`overflow-hidden duration-[700] flex flex-col gap-[10px] ${
+        className={`overflow-y-auto duration-[700] flex flex-col gap-[10px] ${
           acitve == true ? "h-[240px]" : "h-[0]"
         }`}
       >
-     <div  className="w-full flex items-center justify-between">
-      <div className="text-[#56B2E5] text-[18px]">krutoiitip</div>
-      <div className="text-[#56B2E5] text-[18px]">1 место</div>
+      {top && top.length > 0 && (
+  top.map((item, index) => {
+    let color;
+    switch (index) {
+      case 0:
+        color = "#56B2E5"; // 1 место
+        break;
+      case 1:
+        color = "#FFD7F1"; // 2 место
+        break;
+      case 2:
+        color = "#C4FF35"; // 3 место
+        break;
+      default:
+        color = "#CCCCCC"; // Остальные
+    }
+
+    return (
+      <div key={index} className="w-full flex items-center justify-between">
+        <div className="text-[18px]" style={{ color }}>{item.username}</div>
+        <div className="text-[18px]" style={{ color }}>{index + 1} место</div>
+      </div>
+    );
+  })
+)}
+
+     <div className="w-full flex items-center justify-between">
+      <div className="text-[16px] font-[900]">{my?.username}</div>
+      <div className="text-[16px] font-[900]">{my?.position} место</div>
      </div>
      <div className="w-full flex items-center justify-between">
-      <div className="text-[#FFD7F1] text-[18px]">krutoiitip</div>
-      <div className="text-[#FFD7F1] text-[18px]">2 место</div>
-     </div>
-     <div className="w-full flex items-center justify-between">
-      <div className="text-[#C4FF35] text-[18px]">krutoiitip</div>
-      <div className="text-[#C4FF35] text-[18px]">3 место</div>
-     </div>
-     <div className="w-full flex items-center justify-between">
-      <div className="text-[16px] font-[900]">krutoiitip</div>
-      <div className="text-[16px] font-[900]">230 место</div>
-     </div>
-     <div className="w-full flex items-center justify-between">
-      <div className="text-[16px] font-[400]">Для топ-200 </div>
-      <div className="text-[16px] font-[400]">пригласи ещё 5 друзей</div>
+      <div className="text-[16px] font-[400]">Для топ-10 </div>
+      <div className="text-[16px] font-[400]">   {referralsNeeded !== null && `пригласи ещё ${referralsNeeded} друзей`}</div>
      </div>
      <div className="text-[#CCCCCC] text-[16px]">Топ-10 рефоводов получают +10% к выплатам еженедельно!</div>
 
