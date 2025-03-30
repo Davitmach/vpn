@@ -1,4 +1,7 @@
+'use client';
+import { useState } from "react";
 export const CancelBtn = ()=> {
+    const [active,setActive] = useState<boolean>(false)
     async function cancel() {
         const response = await fetch("https://prostovpn.su/api/subscription/detach", {
             method: "POST",
@@ -12,8 +15,10 @@ export const CancelBtn = ()=> {
    const handle = ()=> {
     setTimeout(()=> {
 cancel()
+setActive(true)
     },1000)
    }
+   if(active == false) {
     return(
         <>
         <svg onClick={handle} className="max-w-[350px] mx-auto mt-[10px] cursor-pointer" viewBox="0 0 350 62" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -22,4 +27,6 @@ cancel()
 </svg>
 </>
     )
+}
+else return <></>
 }
