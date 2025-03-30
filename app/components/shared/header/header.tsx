@@ -1,6 +1,7 @@
 'use client';
 import './style.scss';
 import { usePathname, useRouter } from "next/navigation";
+import { log } from 'node:console';
 import { useEffect, useState } from "react";
 
 interface IState {
@@ -52,7 +53,7 @@ async function checkVpnStatus() {
         setStatus(data ? true : false); // Обновляем состояние в зависимости от ответа API
     } catch (error) {
         console.error("Ошибка при проверке VPN статуса:", error);
-        setStatus(false); // В случае ошибки также ставим 'dis'
+        setStatus(false); 
     }
 }
 
@@ -67,14 +68,17 @@ async function getSubscriptionEndDate() {
     const data = await response.json();
   
     if (data && data !== null) {
-        const formattedDate = data.replace(/-/g, '.'); // Заменяем "-" на "."
+        const formattedDate = data.replace(/-/g, '.'); 
         setEnd(formattedDate);
         setActive('conn');
         localStorage.setItem('sub','true')
+        console.log('Подписка активна до:', formattedDate);
+        
     }
     else {
         setActive('dis')
         localStorage.setItem('sub','false')
+        log('Подписка не активна')
     }
 }
 
@@ -93,7 +97,7 @@ setTimeout(() => {
             <header className="w-full max-w-[350px] h-[80px] relative bg-[#56B2E5] flex items-center justify-between px-[20px] py-[10px] mx-auto rounded-b-[20px] rounded-tr-[20px] mt-[50px]">
                 <div className="flex flex-col  justify-between h-full">
                     <div className="text-white font-[700] text-[18px] name">Prosto.vpn</div>
-                    <div className="text-white font-[400] text-[18px] description leading-[1]">{States[active].description}</div>
+                    <div className="text-white font-[400] text-[18px] description leading-[1]">{end ? 'Подписка активна' :'Нет подписки'}</div>
                 </div>
                 <div className="flex flex-col h-full justify-between">
                     <div className="text-white font-[700] text-[18px] title">{status == true ? 'Подключен': 'Отключен'}</div>
