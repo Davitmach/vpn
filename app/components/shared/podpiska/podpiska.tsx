@@ -199,12 +199,12 @@ checkReferralGift()
   </div>
   </div>
 </div>
-<Infoblock year={active == '4' ?false : true}  tarif={active == '1' ? 0 : active == '2' ? 8 : active =='3' ? 16 :30} type={active !=='probni' ? 'eco': 'trial'}/>
+<Infoblock year={active == '4' ?false : true}  tarif={active == '1' ? 0 : active == '2' ? 8 : active =='3' ? 16 :30} type={['probni', 'gift'].includes(active) ? 'trial' : 'eco'}/>
 <div className="Pay mt-[13px] flex flex-col gap-[10px]">
   <div className="font-[400] text-[18px] text-white">Итого</div>
   <div className="w-full flex justify-between">
-    <div className="font-[600] text-[24px] text-white">{active == 'probni' ?'1 день' :active == '1'? '1 месяц':active == '2' ? '3 месяца': active == '3' ? '6 месяцев' : '1 год' }</div>
-    <div className="font-[600] text-[24px] text-white">{active == 'probni' ? '1 рубль' : active == '1' ?  count == 1 ? '199 рублей' : count == 2 ? '249 рублей' : count == 3 ? '298 рублей' : '348 рублей':active == '3' ?count == 1 ?'549 рублей'  :count ==2 ? '686 рублей' : count ==3 ?'823 рублей' :'960 рублей' :active == '2' ?count == 1 ?'999 рублей' : count ==2 ?'1249 рублей' : count == 3 ?'1498 рублей' : '1747 рублей' : count ==1 ? '1790 рублей' : count == 2 ?'2237 рублей' : count == 3 ? '2683 рублей' : '3130 рублей' }</div>
+    <div className="font-[600] text-[24px] text-white">{active == 'probni' || active == 'gift' ?'1 день' :active == '1'? '1 месяц':active == '2' ? '3 месяца': active == '3' ? '6 месяцев' : '1 год' }</div>
+    <div className="font-[600] text-[24px] text-white">{active == 'probni' || active == 'gift' ? '1 рубль' : active == '1' ?  count == 1 ? '199 рублей' : count == 2 ? '249 рублей' : count == 3 ? '298 рублей' : '348 рублей':active == '3' ?count == 1 ?'549 рублей'  :count ==2 ? '686 рублей' : count ==3 ?'823 рублей' :'960 рублей' :active == '2' ?count == 1 ?'999 рублей' : count ==2 ?'1249 рублей' : count == 3 ?'1498 рублей' : '1747 рублей' : count ==1 ? '1790 рублей' : count == 2 ?'2237 рублей' : count == 3 ? '2683 рублей' : '3130 рублей' }</div>
   </div>
   <div onClick={HandleSubmit}><svg  className="Pay_btn mx-auto max-w-[350px] w-full h-[auto] mt-[10px] cursor-pointer duration-[700]" viewBox="0 0 350 50" fill="none" xmlns="http://www.w3.org/2000/svg">
 <rect width="350" height="50" rx="20" fill="#BBF6E2"/>
