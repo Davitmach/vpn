@@ -139,14 +139,7 @@ export const SettingsHeader = () => {
            }} className='cursor-pointer' d="M2.22183 9.29287C1.8313 9.68339 1.8313 10.3166 2.22183 10.7071L8.58579 17.071C8.97631 17.4616 9.60948 17.4616 10 17.071C10.3905 16.6805 10.3905 16.0474 10 15.6568L4.34315 9.99998L10 4.34312C10.3905 3.9526 10.3905 3.31943 10 2.92891C9.60948 2.53838 8.97631 2.53838 8.58579 2.92891L2.22183 9.29287ZM17.0711 8.99998H2.92893L2.92893 11H17.0711L17.0711 8.99998Z" fill="white"/>
 </svg>
 </div>
-           <div><svg width="45" height="22" viewBox="0 0 45 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-<circle cx="2" cy="3" r="2" fill="white"/>
-<circle cx="2" cy="11" r="2" fill="white"/>
-<circle cx="2" cy="19" r="2" fill="white"/>
-<path d="M44 1L24 21" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-<path className='cursor-pointer' d="M44 21L24 0.999999" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-</svg>
-</div>
+          
               
             </header>
         </>

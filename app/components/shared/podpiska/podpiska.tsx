@@ -131,7 +131,7 @@ checkReferralGift()
         {sub == true && <svg onClick={()=> {
             setActive(gift == true ?  'gift':'probni')
         }} className="mx-auto max-w-[350px] w-full h-[auto] mt-[10px]"  viewBox="0 0 350 62" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="350" height="62" rx="20" fill={ active =='probni' ?'#C4FF35' : '#BBF6E2'}/>
+<rect width="350" height="62" rx="20" fill={ active =='probni' || active == 'gift' ?'#C4FF35' : '#BBF6E2'}/>
 <text fill="black" x="38" font-size="18" y="36" font-weight="300">Пробный период / {gift == true ? '7 дней' : '3 дня'} за 1 рубль</text>
 
 </svg>}  
