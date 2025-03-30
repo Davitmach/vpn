@@ -78,7 +78,7 @@ async function getSubscriptionEndDate() {
     else {
         setActive('dis')
         localStorage.setItem('sub','false')
-        log('Подписка не активна')
+        console.log('Подписка не активна')
     }
 }
 
