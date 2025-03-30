@@ -6,12 +6,21 @@ import { useRouter } from 'next/navigation';
 import { Connect } from '../connect/connect';
 const getDeviceName = () => {
   const ua = navigator.userAgent.toLowerCase();
-  if (ua.includes("mac")) return "MACOS";
-  if (ua.includes("win")) return "Windows";
+  const platform = navigator.platform.toLowerCase();
+
   if (ua.includes("android")) return "Android";
-  if (ua.includes("iphone") || ua.includes("ipad")) return "iOS";
+  if (ua.includes("iphone") || ua.includes("ipad") || ua.includes("ipod") || platform.includes("iphone") || platform.includes("ipad")) {
+      return "iOS";
+  }
+  if (ua.includes("mac") && "ontouchend" in document) {
+      return "iOS"; // iPads с iOS 13+
+  }
+  if (ua.includes("mac")) return "macOS";
+  if (ua.includes("win")) return "Windows";
+
   return "Неизвестное устройство";
 };
+
 
 const deviceName = getDeviceName();
 const Data = {
