@@ -5,6 +5,7 @@ import { CancelBtn } from "../cancelBtn/cancelBtn";
 
 import { Infoblock } from "../infoBlock/infoBlock";
 import './style.scss'
+import { set } from "animejs";
 
 export const Podpiska = ()=> {
   const [active,setActive] = useState('');
@@ -83,10 +84,12 @@ const HandleSubmit = async () => {
 if(active == 'probni') {
   setActiveTarif('Пробный период')
 setAmount(1);
+setCount(1)
 }
 else if(active == 'gift') {
   setActiveTarif('Подарок по реф')
   setAmount(1)
+  setCount(1)
 }
 else if(active == '1') {
   setActiveTarif('1 месяц')
@@ -181,24 +184,25 @@ checkReferralGift()
 </svg>
 
 {attach == true && <CancelBtn/>}
-<div className="Counter w-full flex justify-between  mt-[20px]">
+{['probni', 'gift'].includes(active) ? '': <div className="Counter w-full flex justify-between  mt-[20px]">
 
-  <div className="text-[18px] font-[400] text-white relative">Выберите количество устройств</div>
-  <div><input onClick={()=> {
-    setCountActive(prev=> !prev)
-  }} className={`w-[51px] h-[30px] flex item-center justify-center bg-[#FFFFFF] outline-none rounded-[20px] text-center px-[7 px] ${countActive == true ? 'rounded-b-[0]' :''} `} type="text" value={count} readOnly  onInput={(e) => {
-    e.currentTarget.value = e.currentTarget.value.replace(/\D/g, "");
-  }}  />
-  <div className={`flex flex-col gap-[5px] ${countActive == true? "" :'hidden'} absolute bg-white w-[51px] rounded-[20px] rounded-t-[0] p-[7px]`}>
-    {Array.from({length:4},(_,index)=> (
-      <div onClick={()=> {
-        setCount(index+1)
-        setCountActive(false)
-      }} className="text-center" key={index}>{index+1}</div>
-    ))}
-  </div>
-  </div>
+<div className="text-[18px] font-[400] text-white relative">Выберите количество устройств</div>
+<div><input onClick={()=> {
+  setCountActive(prev=> !prev)
+}} className={`w-[51px] h-[30px] flex item-center justify-center bg-[#FFFFFF] outline-none rounded-[20px] text-center px-[7 px] ${countActive == true ? 'rounded-b-[0]' :''} `} type="text" value={count} readOnly  onInput={(e) => {
+  e.currentTarget.value = e.currentTarget.value.replace(/\D/g, "");
+}}  />
+<div className={`flex flex-col gap-[5px] ${countActive == true? "" :'hidden'} absolute bg-white w-[51px] rounded-[20px] rounded-t-[0] p-[7px]`}>
+  {Array.from({length:4},(_,index)=> (
+    <div onClick={()=> {
+      setCount(index+1)
+      setCountActive(false)
+    }} className="text-center" key={index}>{index+1}</div>
+  ))}
 </div>
+</div>
+</div>}
+
 <Infoblock year={active == '4' ?false : true}  tarif={active == '1' ? 0 : active == '2' ? 8 : active =='3' ? 16 :30} type={['probni', 'gift'].includes(active) ? 'trial' : 'eco'}/>
 <div className="Pay mt-[13px] flex flex-col gap-[10px]">
   <div className="font-[400] text-[18px] text-white">Итого</div>
