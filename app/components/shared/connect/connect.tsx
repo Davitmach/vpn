@@ -27,11 +27,10 @@ export const Connect = ()=> {
          setLink('/tarif')
         }
     }
-    useEffect(()=> {
-       setTimeout(() => {
-        getSubscriptionEndDate()
-       }, 1000);
-    },[])
+    useEffect(() => {
+        window.Telegram.WebApp.ready();
+        getSubscriptionEndDate();
+    }, []);
     return(
         <>
         <svg className="w-full mx-auto max-w-[350px] h-[auto]" width="350" height="155" viewBox="0 0 350 155" fill="none" xmlns="http://www.w3.org/2000/svg">
