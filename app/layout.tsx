@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import "./globals.scss";
 import { Full } from "./components/shared/fullScreen/full";
+import { Loading } from "./components/shared/loading/loading";
 
 
 
@@ -30,7 +31,7 @@ export default function RootLayout({
         className={`overflow-x-hidden   antialiased`}
       >
         <Full/>
-
+<Loading/>
             {children}
      
         <Script src="https://telegram.org/js/telegram-web-app.js"/>
