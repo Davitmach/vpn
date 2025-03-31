@@ -83,12 +83,26 @@ async function getSubscriptionEndDate() {
 }
 
 
+// useEffect(() => {
+// setTimeout(() => {
+//     checkVpnStatus();
+//     getSubscriptionEndDate();
+//     Telegram.WebApp.setHeaderColor('#393957');       
+// }, 1000);
+// }, []);
 useEffect(() => {
-setTimeout(() => {
-    checkVpnStatus();
-    getSubscriptionEndDate();
-    Telegram.WebApp.setHeaderColor('#393957');       
-}, 1000);
+    const checkReady = () => {
+        if (Telegram.WebApp.initData) {  
+            getSubscriptionEndDate();
+            checkVpnStatus();
+            Telegram.WebApp.setHeaderColor('#393957');
+        } else {
+            setTimeout(checkReady, 100); // Проверяем снова через 100 мс
+        }
+    };
+
+    Telegram.WebApp.ready(); // Сообщаем, что WebApp готов
+    checkReady(); // Проверяем, загрузились ли initData
 }, []);
 
     return (
