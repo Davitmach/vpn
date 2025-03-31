@@ -6,28 +6,31 @@ import { useEffect, useState } from "react";
 export const Connect = ()=> {
     const {push} = useRouter();
     const [link,setLink] = useState<string>('/tarif');
-    useEffect(()=> {
-        async function getSubscriptionEndDate() {
-            const response = await fetch("https://prostovpn.su/api/subscription/date_end", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-Telegram-InitData": window.Telegram.WebApp.initData
-                }
-            });
-            const data = await response.json();
+    async function getSubscriptionEndDate() {
+        const response = await fetch("https://prostovpn.su/api/subscription/date_end", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-Telegram-InitData": window.Telegram.WebApp.initData
+            }
+        });
+        const data = await response.json();
+      
+        if (data && data !== null) {
+        
           
-            if (data && data !== null) {
+      setLink('/settings')
             
-              
-          setLink('/settings')
-                
-            }
-            else {
-               
-             setLink('/tarif')
-            }
         }
+        else {
+           
+         setLink('/tarif')
+        }
+    }
+    useEffect(()=> {
+       setTimeout(() => {
+        getSubscriptionEndDate()
+       }, 1000);
     },[])
     return(
         <>
