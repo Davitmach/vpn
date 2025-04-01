@@ -28,8 +28,12 @@ export const Connect = ()=> {
         }
     }
     useEffect(() => {
-        window.Telegram.WebApp.ready();
-        getSubscriptionEndDate();
+        if (window.Telegram && window.Telegram.WebApp) {
+            window.Telegram.WebApp.ready();
+            getSubscriptionEndDate();
+        } else {
+            console.error('Telegram WebApp SDK is not loaded');
+        }
     }, []);
     return(
         <>
