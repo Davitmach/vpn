@@ -203,7 +203,7 @@ checkReferralGift()
 </div>
 </div>}
 
-<Infoblock year={active == '4' ?false : true}  tarif={active == '1' ? 0 : active == '2' ? 8 : active =='3' ? 16 :30} type={['probni', 'gift'].includes(active) ? 'trial' : 'eco'}/>
+<Infoblock year={active == '4' ?false : true}  tarif={active == '1' ? 0 : active == '3' ? 8 : active =='2' ? 16 :30} type={['probni', 'gift'].includes(active) ? 'trial' : 'eco'}/>
 <div className="Pay mt-[13px] flex flex-col gap-[10px]">
   <div className="font-[400] text-[18px] text-white">Итого</div>
   <div className="w-full flex justify-between">
